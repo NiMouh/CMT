@@ -1,0 +1,136 @@
+\hypertarget{lib_8h}{}\doxysection{src/lib/lib.h File Reference}
+\label{lib_8h}\index{src/lib/lib.h@{src/lib/lib.h}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{lib_8h_a33616ca79a4736c394b1388f4ed5d23b}{create\+\_\+new\+\_\+container}} (const char $\ast$container\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Create a new LXC container object. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{lib_8h_a9908583fcfd0731f46829dac5a993ab1}{remove\+\_\+container}} (const char $\ast$container\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Remove an existing LXC container object. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{lib_8h_aa09a1ab23c0a1fa6619c486527c88d4e}{start\+\_\+network\+\_\+connection}} (const char $\ast$container\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Start the network connection for a container. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{lib_8h_a95b2675307fcb6177be21c49c254acbf}{execute\+\_\+command\+\_\+in\+\_\+container}} (const char $\ast$container\+\_\+name, const char $\ast$command)
+\begin{DoxyCompactList}\small\item\em Execute a command in a container. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{lib_8h_abd9f80ed9761668742ac7875ca94d149}{execute\+\_\+application\+\_\+in\+\_\+container}} (const char $\ast$container\+\_\+name, const char $\ast$application)
+\begin{DoxyCompactList}\small\item\em Execute an application in a container. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{lib_8h_ad27ecf4327174946f44264327700ddcd}{copy\+\_\+file\+\_\+to\+\_\+container}} (const char $\ast$container\+\_\+name, const char $\ast$file\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Copy a file to a container. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{lib_8h_ad27ecf4327174946f44264327700ddcd}\label{lib_8h_ad27ecf4327174946f44264327700ddcd}} 
+\index{lib.h@{lib.h}!copy\_file\_to\_container@{copy\_file\_to\_container}}
+\index{copy\_file\_to\_container@{copy\_file\_to\_container}!lib.h@{lib.h}}
+\doxysubsubsection{\texorpdfstring{copy\_file\_to\_container()}{copy\_file\_to\_container()}}
+{\footnotesize\ttfamily int copy\+\_\+file\+\_\+to\+\_\+container (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name,  }\item[{const char $\ast$}]{file\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Copy a file to a container. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em container\+\_\+name} & name of the container \\
+\hline
+{\em file\+\_\+name} & name of the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 on success, -\/1 on failure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lib_8h_a33616ca79a4736c394b1388f4ed5d23b}\label{lib_8h_a33616ca79a4736c394b1388f4ed5d23b}} 
+\index{lib.h@{lib.h}!create\_new\_container@{create\_new\_container}}
+\index{create\_new\_container@{create\_new\_container}!lib.h@{lib.h}}
+\doxysubsubsection{\texorpdfstring{create\_new\_container()}{create\_new\_container()}}
+{\footnotesize\ttfamily int create\+\_\+new\+\_\+container (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Create a new LXC container object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em container\+\_\+name} & name of the container \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 on success, -\/1 on failure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lib_8h_abd9f80ed9761668742ac7875ca94d149}\label{lib_8h_abd9f80ed9761668742ac7875ca94d149}} 
+\index{lib.h@{lib.h}!execute\_application\_in\_container@{execute\_application\_in\_container}}
+\index{execute\_application\_in\_container@{execute\_application\_in\_container}!lib.h@{lib.h}}
+\doxysubsubsection{\texorpdfstring{execute\_application\_in\_container()}{execute\_application\_in\_container()}}
+{\footnotesize\ttfamily int execute\+\_\+application\+\_\+in\+\_\+container (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name,  }\item[{const char $\ast$}]{application }\end{DoxyParamCaption})}
+
+
+
+Execute an application in a container. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em container\+\_\+name} & name of the container \\
+\hline
+{\em application} & application to execute \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 on success, -\/1 on failure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lib_8h_a95b2675307fcb6177be21c49c254acbf}\label{lib_8h_a95b2675307fcb6177be21c49c254acbf}} 
+\index{lib.h@{lib.h}!execute\_command\_in\_container@{execute\_command\_in\_container}}
+\index{execute\_command\_in\_container@{execute\_command\_in\_container}!lib.h@{lib.h}}
+\doxysubsubsection{\texorpdfstring{execute\_command\_in\_container()}{execute\_command\_in\_container()}}
+{\footnotesize\ttfamily int execute\+\_\+command\+\_\+in\+\_\+container (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name,  }\item[{const char $\ast$}]{command }\end{DoxyParamCaption})}
+
+
+
+Execute a command in a container. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em container\+\_\+name} & name of the container \\
+\hline
+{\em command} & command to execute \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 on success, -\/1 on failure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lib_8h_a9908583fcfd0731f46829dac5a993ab1}\label{lib_8h_a9908583fcfd0731f46829dac5a993ab1}} 
+\index{lib.h@{lib.h}!remove\_container@{remove\_container}}
+\index{remove\_container@{remove\_container}!lib.h@{lib.h}}
+\doxysubsubsection{\texorpdfstring{remove\_container()}{remove\_container()}}
+{\footnotesize\ttfamily int remove\+\_\+container (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Remove an existing LXC container object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em container\+\_\+name} & name of the container \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 on success, -\/1 on failure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lib_8h_aa09a1ab23c0a1fa6619c486527c88d4e}\label{lib_8h_aa09a1ab23c0a1fa6619c486527c88d4e}} 
+\index{lib.h@{lib.h}!start\_network\_connection@{start\_network\_connection}}
+\index{start\_network\_connection@{start\_network\_connection}!lib.h@{lib.h}}
+\doxysubsubsection{\texorpdfstring{start\_network\_connection()}{start\_network\_connection()}}
+{\footnotesize\ttfamily int start\+\_\+network\+\_\+connection (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Start the network connection for a container. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em container\+\_\+name} & name of the container \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 on success, -\/1 on failure 
+\end{DoxyReturn}

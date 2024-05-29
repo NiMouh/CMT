@@ -41,8 +41,23 @@ A documentação será gerada na pasta `docs/`.
 
 ## Execução
 
-Para compilar o programa, basta executar os seguintes comandos:
+Primeiramente, é necessário instalar o *LXC*:
+```bash	
+$ sudo apt-get install lxc
+```
 
+Ou, atualizar o *LXC*, caso já esteja instalado:
+```bash
+$ sudo apt-get update
+$ sudo apt-get upgrade lxc
+```
+
+Para verificar se o *LXC* foi instalado corretamente, execute o seguinte comando:
+```bash
+$ lxc-checkconfig
+```
+
+Para compilar o programa, basta executar os seguintes comandos:
 ```bash
 $ make
 $ ./program
