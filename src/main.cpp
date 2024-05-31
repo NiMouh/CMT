@@ -4,6 +4,9 @@
 
 #define CONTAINER_NAME_SIZE 100
 #define COMMAND_BUFFER_SIZE 100
+#define APPLICATION_NAME_BUFFER_SIZE 100
+#define NETWORK_BUFFER_SIZE 100
+#define FILENAME_BUFFER_SIZE 100
 
 int show_options_menu(void)
 {
@@ -37,7 +40,7 @@ int show_options_menu(void)
     return option;
 }
 
-int main()
+int main(void)
 {
 
     int option = 0;
@@ -49,6 +52,7 @@ int main()
 
         switch (option)
         {
+
         case 1: // Add a new Container
         {
             printf("\033[H\033[J"); // Clear the screen
@@ -141,7 +145,7 @@ int main()
             break;
         }
 
-        case 4: // Execute a command in a Container
+        case 4: // FIXME: Execute a command in a Container
         {
             printf("\033[H\033[J"); // Clear the screen
 
@@ -189,11 +193,29 @@ int main()
         {
             printf("\033[H\033[J"); // Clear the screen
 
-            printf("Establishing a network connection with a Container...\n");
+            printf("Enter the name of the Container: ");
+            if (fgets(container_name, CONTAINER_NAME_SIZE, stdin) == NULL)
+            {
+                printf("Error: Failed to read the container name.\n");
+                break;
+            }
+
+            container_name[strcspn(container_name, "\n")] = 0; // Remove the newline character
+
+            if (start_network_connection(container_name) == 0)
+            {
+                printf("Network connection established successfully with Container %s.\n", container_name);
+            }
+            else
+            {
+                printf("Error: Failed to establish network connection with Container %s.\n", container_name);
+            }
 
             printf("Press ENTER to continue...");
             while (getchar() != '\n') // Clear the input buffer
                 ;
+
+            memset(container_name, 0, CONTAINER_NAME_SIZE); // clear name buffer
 
             break;
         }
@@ -204,9 +226,41 @@ int main()
 
             printf("Executing an application in a Container...\n");
 
+            printf("Enter the name of the Container: ");
+            if (fgets(container_name, CONTAINER_NAME_SIZE, stdin) == NULL)
+            {
+                printf("Error: Failed to read the container name.\n");
+                break;
+            }
+
+            container_name[strcspn(container_name, "\n")] = 0; // Remove the newline character
+
+            char application[APPLICATION_NAME_BUFFER_SIZE] = {0};
+
+            printf("Enter the application to execute: ");
+            if (fgets(application, APPLICATION_NAME_BUFFER_SIZE, stdin) == NULL)
+            {
+                printf("Error: Failed to read the application.\n");
+                break;
+            }
+
+            application[strcspn(application, "\n")] = 0; // Remove the newline character
+
+            if (run_application_in_container(container_name, application) == 0) // execute the application
+            {
+                printf("Application \"%s\" executed successfully in Container %s.\n", application, container_name);
+            }
+            else
+            {
+                printf("Error: Failed to execute application \"%s\" in Container %s.\n", application, container_name);
+            }
+
             printf("Press ENTER to continue...");
             while (getchar() != '\n') // Clear the input buffer
                 ;
+
+            memset(container_name, 0, CONTAINER_NAME_SIZE); // clear name buffer
+
             break;
         }
 
@@ -214,11 +268,41 @@ int main()
         {
             printf("\033[H\033[J"); // Clear the screen
 
-            printf("Copying a file to a Container...\n");
+            printf("Enter the name of the Container: ");
+            if (fgets(container_name, CONTAINER_NAME_SIZE, stdin) == NULL)
+            {
+                printf("Error: Failed to read the container name.\n");
+                break;
+            }
+
+            container_name[strcspn(container_name, "\n")] = 0; // Remove the newline character
+
+            char file_name[FILENAME_BUFFER_SIZE] = {0};
+
+            printf("Enter the name of the file to copy: ");
+            if (fgets(file_name, FILENAME_BUFFER_SIZE, stdin) == NULL)
+            {
+                printf("Error: Failed to read the file name.\n");
+                break;
+            }
+
+            file_name[strcspn(file_name, "\n")] = 0; // Remove the newline character
+
+            if (copy_file_to_container(container_name, file_name) == 0) // copy the file
+            {
+                printf("File \"%s\" copied successfully to Container %s.\n", file_name, container_name);
+            }
+            else
+            {
+                printf("Error: Failed to copy file \"%s\" to Container %s.\n", file_name, container_name);
+            }
 
             printf("Press ENTER to continue...");
             while (getchar() != '\n') // Clear the input buffer
                 ;
+
+            memset(container_name, 0, CONTAINER_NAME_SIZE); // clear name buffer
+
             break;
         }
 
@@ -226,7 +310,7 @@ int main()
             printf("Exiting...\n");
             break;
         default:
-            printf("Error: Invalid option. Please ENTER a number between 1 and 7.\n");
+            printf("Error: Invalid option. Please ENTER a number between 1 and 8.\n");
             break;
         }
     } while (option != 8);

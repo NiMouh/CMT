@@ -9,12 +9,14 @@ int \mbox{\hyperlink{lib_8h_a33616ca79a4736c394b1388f4ed5d23b}{create\+\_\+new\+
 \begin{DoxyCompactList}\small\item\em Create a new LXC container object. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8h_a9908583fcfd0731f46829dac5a993ab1}{remove\+\_\+container}} (const char $\ast$container\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Remove an existing LXC container object. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{lib_8h_a5fcc6feeff3a69139243f237a9a5293d}{list\+\_\+containers}} (void)
+\begin{DoxyCompactList}\small\item\em List all the containers. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8h_aa09a1ab23c0a1fa6619c486527c88d4e}{start\+\_\+network\+\_\+connection}} (const char $\ast$container\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Start the network connection for a container. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{lib_8h_a95b2675307fcb6177be21c49c254acbf}{execute\+\_\+command\+\_\+in\+\_\+container}} (const char $\ast$container\+\_\+name, const char $\ast$command)
-\begin{DoxyCompactList}\small\item\em Execute a command in a container. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{lib_8h_abd9f80ed9761668742ac7875ca94d149}{execute\+\_\+application\+\_\+in\+\_\+container}} (const char $\ast$container\+\_\+name, const char $\ast$application)
-\begin{DoxyCompactList}\small\item\em Execute an application in a container. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{lib_8h_a13ed7c58c38c277f5834648759601c6a}{run\+\_\+command\+\_\+in\+\_\+container}} (const char $\ast$container\+\_\+name, const char $\ast$command)
+\begin{DoxyCompactList}\small\item\em Run a command in a container. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{lib_8h_a4187f527ceeccdf4c121a65c42de0860}{run\+\_\+application\+\_\+in\+\_\+container}} (const char $\ast$container\+\_\+name, const char $\ast$application)
+\begin{DoxyCompactList}\small\item\em Run an application in a container. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8h_ad27ecf4327174946f44264327700ddcd}{copy\+\_\+file\+\_\+to\+\_\+container}} (const char $\ast$container\+\_\+name, const char $\ast$file\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Copy a file to a container. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -58,43 +60,16 @@ Create a new LXC container object.
 \begin{DoxyReturn}{Returns}
 int 0 on success, -\/1 on failure 
 \end{DoxyReturn}
-\mbox{\Hypertarget{lib_8h_abd9f80ed9761668742ac7875ca94d149}\label{lib_8h_abd9f80ed9761668742ac7875ca94d149}} 
-\index{lib.h@{lib.h}!execute\_application\_in\_container@{execute\_application\_in\_container}}
-\index{execute\_application\_in\_container@{execute\_application\_in\_container}!lib.h@{lib.h}}
-\doxysubsubsection{\texorpdfstring{execute\_application\_in\_container()}{execute\_application\_in\_container()}}
-{\footnotesize\ttfamily int execute\+\_\+application\+\_\+in\+\_\+container (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name,  }\item[{const char $\ast$}]{application }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{lib_8h_a5fcc6feeff3a69139243f237a9a5293d}\label{lib_8h_a5fcc6feeff3a69139243f237a9a5293d}} 
+\index{lib.h@{lib.h}!list\_containers@{list\_containers}}
+\index{list\_containers@{list\_containers}!lib.h@{lib.h}}
+\doxysubsubsection{\texorpdfstring{list\_containers()}{list\_containers()}}
+{\footnotesize\ttfamily int list\+\_\+containers (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
 
 
-Execute an application in a container. 
+List all the containers. 
 
-
-\begin{DoxyParams}{Parameters}
-{\em container\+\_\+name} & name of the container \\
-\hline
-{\em application} & application to execute \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-int 0 on success, -\/1 on failure 
-\end{DoxyReturn}
-\mbox{\Hypertarget{lib_8h_a95b2675307fcb6177be21c49c254acbf}\label{lib_8h_a95b2675307fcb6177be21c49c254acbf}} 
-\index{lib.h@{lib.h}!execute\_command\_in\_container@{execute\_command\_in\_container}}
-\index{execute\_command\_in\_container@{execute\_command\_in\_container}!lib.h@{lib.h}}
-\doxysubsubsection{\texorpdfstring{execute\_command\_in\_container()}{execute\_command\_in\_container()}}
-{\footnotesize\ttfamily int execute\+\_\+command\+\_\+in\+\_\+container (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name,  }\item[{const char $\ast$}]{command }\end{DoxyParamCaption})}
-
-
-
-Execute a command in a container. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em container\+\_\+name} & name of the container \\
-\hline
-{\em command} & command to execute \\
-\hline
-\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 int 0 on success, -\/1 on failure 
 \end{DoxyReturn}
@@ -111,6 +86,46 @@ Remove an existing LXC container object.
 
 \begin{DoxyParams}{Parameters}
 {\em container\+\_\+name} & name of the container \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 on success, -\/1 on failure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lib_8h_a4187f527ceeccdf4c121a65c42de0860}\label{lib_8h_a4187f527ceeccdf4c121a65c42de0860}} 
+\index{lib.h@{lib.h}!run\_application\_in\_container@{run\_application\_in\_container}}
+\index{run\_application\_in\_container@{run\_application\_in\_container}!lib.h@{lib.h}}
+\doxysubsubsection{\texorpdfstring{run\_application\_in\_container()}{run\_application\_in\_container()}}
+{\footnotesize\ttfamily int run\+\_\+application\+\_\+in\+\_\+container (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name,  }\item[{const char $\ast$}]{application }\end{DoxyParamCaption})}
+
+
+
+Run an application in a container. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em container\+\_\+name} & name of the container \\
+\hline
+{\em application} & application to execute \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 on success, -\/1 on failure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lib_8h_a13ed7c58c38c277f5834648759601c6a}\label{lib_8h_a13ed7c58c38c277f5834648759601c6a}} 
+\index{lib.h@{lib.h}!run\_command\_in\_container@{run\_command\_in\_container}}
+\index{run\_command\_in\_container@{run\_command\_in\_container}!lib.h@{lib.h}}
+\doxysubsubsection{\texorpdfstring{run\_command\_in\_container()}{run\_command\_in\_container()}}
+{\footnotesize\ttfamily int run\+\_\+command\+\_\+in\+\_\+container (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name,  }\item[{const char $\ast$}]{command }\end{DoxyParamCaption})}
+
+
+
+Run a command in a container. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em container\+\_\+name} & name of the container \\
+\hline
+{\em command} & command to execute \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

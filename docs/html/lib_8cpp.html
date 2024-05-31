@@ -87,15 +87,18 @@ Functions</h2></td></tr>
 <tr class="memitem:a9908583fcfd0731f46829dac5a993ab1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8cpp.html#a9908583fcfd0731f46829dac5a993ab1">remove_container</a> (const char *container_name)</td></tr>
 <tr class="memdesc:a9908583fcfd0731f46829dac5a993ab1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove an existing LXC container object.  <a href="lib_8cpp.html#a9908583fcfd0731f46829dac5a993ab1">More...</a><br /></td></tr>
 <tr class="separator:a9908583fcfd0731f46829dac5a993ab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fcc6feeff3a69139243f237a9a5293d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8cpp.html#a5fcc6feeff3a69139243f237a9a5293d">list_containers</a> (void)</td></tr>
+<tr class="memdesc:a5fcc6feeff3a69139243f237a9a5293d"><td class="mdescLeft">&#160;</td><td class="mdescRight">List all the containers.  <a href="lib_8cpp.html#a5fcc6feeff3a69139243f237a9a5293d">More...</a><br /></td></tr>
+<tr class="separator:a5fcc6feeff3a69139243f237a9a5293d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa09a1ab23c0a1fa6619c486527c88d4e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8cpp.html#aa09a1ab23c0a1fa6619c486527c88d4e">start_network_connection</a> (const char *container_name)</td></tr>
 <tr class="memdesc:aa09a1ab23c0a1fa6619c486527c88d4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the network connection for a container.  <a href="lib_8cpp.html#aa09a1ab23c0a1fa6619c486527c88d4e">More...</a><br /></td></tr>
 <tr class="separator:aa09a1ab23c0a1fa6619c486527c88d4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95b2675307fcb6177be21c49c254acbf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8cpp.html#a95b2675307fcb6177be21c49c254acbf">execute_command_in_container</a> (const char *container_name, const char *command)</td></tr>
-<tr class="memdesc:a95b2675307fcb6177be21c49c254acbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute a command in a container.  <a href="lib_8cpp.html#a95b2675307fcb6177be21c49c254acbf">More...</a><br /></td></tr>
-<tr class="separator:a95b2675307fcb6177be21c49c254acbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd9f80ed9761668742ac7875ca94d149"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8cpp.html#abd9f80ed9761668742ac7875ca94d149">execute_application_in_container</a> (const char *container_name, const char *application)</td></tr>
-<tr class="memdesc:abd9f80ed9761668742ac7875ca94d149"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute an application in a container.  <a href="lib_8cpp.html#abd9f80ed9761668742ac7875ca94d149">More...</a><br /></td></tr>
-<tr class="separator:abd9f80ed9761668742ac7875ca94d149"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13ed7c58c38c277f5834648759601c6a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8cpp.html#a13ed7c58c38c277f5834648759601c6a">run_command_in_container</a> (const char *container_name, const char *command)</td></tr>
+<tr class="memdesc:a13ed7c58c38c277f5834648759601c6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run a command in a container.  <a href="lib_8cpp.html#a13ed7c58c38c277f5834648759601c6a">More...</a><br /></td></tr>
+<tr class="separator:a13ed7c58c38c277f5834648759601c6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4187f527ceeccdf4c121a65c42de0860"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8cpp.html#a4187f527ceeccdf4c121a65c42de0860">run_application_in_container</a> (const char *container_name, const char *application)</td></tr>
+<tr class="memdesc:a4187f527ceeccdf4c121a65c42de0860"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run an application in a container.  <a href="lib_8cpp.html#a4187f527ceeccdf4c121a65c42de0860">More...</a><br /></td></tr>
+<tr class="separator:a4187f527ceeccdf4c121a65c42de0860"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad27ecf4327174946f44264327700ddcd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8cpp.html#ad27ecf4327174946f44264327700ddcd">copy_file_to_container</a> (const char *container_name, const char *file_name)</td></tr>
 <tr class="memdesc:ad27ecf4327174946f44264327700ddcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy a file to a container.  <a href="lib_8cpp.html#ad27ecf4327174946f44264327700ddcd">More...</a><br /></td></tr>
 <tr class="separator:ad27ecf4327174946f44264327700ddcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,78 +169,23 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="abd9f80ed9761668742ac7875ca94d149"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd9f80ed9761668742ac7875ca94d149">&#9670;&nbsp;</a></span>execute_application_in_container()</h2>
+<a id="a5fcc6feeff3a69139243f237a9a5293d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fcc6feeff3a69139243f237a9a5293d">&#9670;&nbsp;</a></span>list_containers()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int execute_application_in_container </td>
+          <td class="memname">int list_containers </td>
           <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>container_name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>application</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Execute an application in a container. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">container_name</td><td>name of the container </td></tr>
-    <tr><td class="paramname">application</td><td>application to execute </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>int 0 on success, -1 on failure </dd></dl>
-
-</div>
-</div>
-<a id="a95b2675307fcb6177be21c49c254acbf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a95b2675307fcb6177be21c49c254acbf">&#9670;&nbsp;</a></span>execute_command_in_container()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int execute_command_in_container </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>container_name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>command</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Execute a command in a container. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">container_name</td><td>name of the container </td></tr>
-    <tr><td class="paramname">command</td><td>command to execute </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>List all the containers. </p>
 <dl class="section return"><dt>Returns</dt><dd>int 0 on success, -1 on failure </dd></dl>
 
 </div>
@@ -262,6 +210,82 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">container_name</td><td>name of the container </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int 0 on success, -1 on failure </dd></dl>
+
+</div>
+</div>
+<a id="a4187f527ceeccdf4c121a65c42de0860"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4187f527ceeccdf4c121a65c42de0860">&#9670;&nbsp;</a></span>run_application_in_container()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int run_application_in_container </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>container_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>application</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Run an application in a container. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">container_name</td><td>name of the container </td></tr>
+    <tr><td class="paramname">application</td><td>application to execute </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int 0 on success, -1 on failure </dd></dl>
+
+</div>
+</div>
+<a id="a13ed7c58c38c277f5834648759601c6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13ed7c58c38c277f5834648759601c6a">&#9670;&nbsp;</a></span>run_command_in_container()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int run_command_in_container </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>container_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>command</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Run a command in a container. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">container_name</td><td>name of the container </td></tr>
+    <tr><td class="paramname">command</td><td>command to execute </td></tr>
   </table>
   </dd>
 </dl>
