@@ -18,6 +18,13 @@ int create_new_container(const char *container_name);
 int remove_container(const char *container_name);
 
 /**
+ * @brief List all the containers
+ * 
+ * @return int 0 on success, -1 on failure
+ */
+int list_containers(void);
+
+/**
  * @brief Start the network connection for a container
  *
  * @param container_name name of the container
@@ -26,22 +33,22 @@ int remove_container(const char *container_name);
 int start_network_connection(const char *container_name);
 
 /**
- * @brief Execute a command in a container
+ * @brief Run a command in a container
  *
  * @param container_name name of the container
  * @param command command to execute
  * @return int 0 on success, -1 on failure
  */
-int execute_command_in_container(const char *container_name, const char *command);
+int run_command_in_container(const char *container_name, const char *command);
 
 /**
- * @brief Execute an application in a container
+ * @brief Run an application in a container
  *
  * @param container_name name of the container
  * @param application application to execute
  * @return int 0 on success, -1 on failure
  */
-int execute_application_in_container(const char *container_name, const char *application);
+int run_application_in_container(const char *container_name, const char *application);
 
 /**
  * @brief Copy a file to a container

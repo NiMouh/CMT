@@ -3,6 +3,7 @@
 #include <string.h>
 
 #define CONTAINER_NAME_SIZE 100
+#define COMMAND_BUFFER_SIZE 100
 
 int show_options_menu(void)
 {
@@ -17,11 +18,12 @@ int show_options_menu(void)
     printf("                                                                         /____/                                                         \n");
     printf("1. Add a new Container\n");
     printf("2. Remove a Container\n");
-    printf("3. Execute a command in a Container\n");
-    printf("4. Establish a network connection with a Container\n");
-    printf("5. Execute an application in a Container\n");
-    printf("6. Copy a file to a Container\n");
-    printf("7. Exit\n\n");
+    printf("3. List all Containers\n");
+    printf("4. Execute a command in a Container\n");
+    printf("5. Establish a network connection with a Container\n");
+    printf("6. Execute an application in a Container\n");
+    printf("7. Copy a file to a Container\n");
+    printf("8. Exit\n\n");
     printf("Choose an option: ");
 
     if (scanf("%d", &option) != 1)
@@ -47,7 +49,7 @@ int main()
 
         switch (option)
         {
-        case 1: // FIXME: Add a new Container
+        case 1: // Add a new Container
         {
             printf("\033[H\033[J"); // Clear the screen
 
@@ -81,7 +83,8 @@ int main()
 
             break;
         }
-        case 2: // FIXME: Remove a Container
+
+        case 2: // Remove a Container
         {
             printf("\033[H\033[J"); // Clear the screen
 
@@ -112,20 +115,77 @@ int main()
                 ;
 
             memset(container_name, 0, CONTAINER_NAME_SIZE); // clear name buffer
+
             break;
         }
-        case 3: // TODO: Execute a command in a Container
+
+        case 3: // List all Containers
         {
             printf("\033[H\033[J"); // Clear the screen
 
-            printf("Executing a command in a Container...\n");
+            printf("Listing all Containers...\n");
+
+            // List all Containers
+            if (list_containers() == 0)
+            {
+                printf("Containers listed successfully.\n");
+            }
+            else
+            {
+                printf("Error: Failed to list Containers.\n");
+            }
 
             printf("Press ENTER to continue...");
             while (getchar() != '\n') // Clear the input buffer
                 ;
             break;
         }
-        case 4: // TODO: Establish a network connection with a Container
+
+        case 4: // Execute a command in a Container
+        {
+            printf("\033[H\033[J"); // Clear the screen
+
+            printf("Executing a command in a Container...\n");
+
+            char command[COMMAND_BUFFER_SIZE] = {0};
+
+            printf("Enter the name of the Container: ");
+            if (fgets(container_name, CONTAINER_NAME_SIZE, stdin) == NULL)
+            {
+                printf("Error: Failed to read the container name.\n");
+                break;
+            }
+
+            container_name[strcspn(container_name, "\n")] = 0; // Remove the newline character
+
+            printf("Enter the command to execute: ");
+            if (fgets(command, COMMAND_BUFFER_SIZE, stdin) == NULL)
+            {
+                printf("Error: Failed to read the command.\n");
+                break;
+            }
+
+            command[strcspn(command, "\n")] = 0; // Remove the newline character
+
+            if (run_command_in_container(container_name, command) == 0) // execute the command
+            {
+                printf("Command \"%s\" executed successfully in Container %s.\n", command, container_name);
+            }
+            else
+            {
+                printf("Error: Failed to execute command \"%s\" in Container %s.\n", command, container_name);
+            }
+
+            printf("Press ENTER to continue...");
+            while (getchar() != '\n') // Clear the input buffer
+                ;
+
+            memset(container_name, 0, CONTAINER_NAME_SIZE); // clear name buffer
+
+            break;
+        }
+
+        case 5: // TODO: Establish a network connection with a Container
         {
             printf("\033[H\033[J"); // Clear the screen
 
@@ -134,9 +194,11 @@ int main()
             printf("Press ENTER to continue...");
             while (getchar() != '\n') // Clear the input buffer
                 ;
+
             break;
         }
-        case 5: // TODO: Execute an application in a Container
+
+        case 6: // TODO: Execute an application in a Container
         {
             printf("\033[H\033[J"); // Clear the screen
 
@@ -147,7 +209,8 @@ int main()
                 ;
             break;
         }
-        case 6: // TODO: Copy a file to a Container
+
+        case 7: // TODO: Copy a file to a Container
         {
             printf("\033[H\033[J"); // Clear the screen
 
@@ -158,14 +221,15 @@ int main()
                 ;
             break;
         }
-        case 7: // Exit
+
+        case 8: // Exit
             printf("Exiting...\n");
             break;
         default:
             printf("Error: Invalid option. Please ENTER a number between 1 and 7.\n");
             break;
         }
-    } while (option != 7);
+    } while (option != 8);
 
     return 0;
 }

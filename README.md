@@ -15,7 +15,7 @@ O uso do *chroot* permite que o LXC altere o diretório raiz de um *container*, 
 Além disso, os *cgroups* desempenham um papel de gestão de recursos, impondo limites à CPU, memória, disco, I/O e largura de banda de rede para cada *container*.
 
 O programa deve ser capaz de:
-- [ ] Criar/Remover *containers*;
+- [x] Criar/Remover *containers*;
 - [ ] Executar comandos num *container* (e.g. listar ficheiros) e visualizar o output;
 - [ ] Copiar ficheiros para dentro de um *container*;
 - [ ] Estabelecer uma ligação de rede com o *container*;
@@ -55,6 +55,11 @@ $ sudo apt-get upgrade lxc
 Para verificar se o *LXC* foi instalado corretamente, execute o seguinte comando:
 ```bash
 $ lxc-checkconfig
+```
+
+Para ver os templates LXC disponíveis, execute o seguinte comando:
+```bash
+$ ls /usr/share/lxc/templates/
 ```
 
 Para compilar o programa, basta executar os seguintes comandos:
