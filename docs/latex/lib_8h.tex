@@ -13,7 +13,7 @@ int \mbox{\hyperlink{lib_8h_a5fcc6feeff3a69139243f237a9a5293d}{list\+\_\+contain
 \begin{DoxyCompactList}\small\item\em List all the containers. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8h_aa09a1ab23c0a1fa6619c486527c88d4e}{start\+\_\+network\+\_\+connection}} (const char $\ast$container\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Start the network connection for a container. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{lib_8h_a13ed7c58c38c277f5834648759601c6a}{run\+\_\+command\+\_\+in\+\_\+container}} (const char $\ast$container\+\_\+name, const char $\ast$command)
+int \mbox{\hyperlink{lib_8h_ab4ddcb8c152ed53ae283726f3d2bc0db}{run\+\_\+command\+\_\+in\+\_\+container}} (const char $\ast$container\+\_\+name, char $\ast$command)
 \begin{DoxyCompactList}\small\item\em Run a command in a container. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8h_a4187f527ceeccdf4c121a65c42de0860}{run\+\_\+application\+\_\+in\+\_\+container}} (const char $\ast$container\+\_\+name, const char $\ast$application)
 \begin{DoxyCompactList}\small\item\em Run an application in a container. \end{DoxyCompactList}\item 
@@ -111,11 +111,11 @@ Run an application in a container.
 \begin{DoxyReturn}{Returns}
 int 0 on success, -\/1 on failure 
 \end{DoxyReturn}
-\mbox{\Hypertarget{lib_8h_a13ed7c58c38c277f5834648759601c6a}\label{lib_8h_a13ed7c58c38c277f5834648759601c6a}} 
+\mbox{\Hypertarget{lib_8h_ab4ddcb8c152ed53ae283726f3d2bc0db}\label{lib_8h_ab4ddcb8c152ed53ae283726f3d2bc0db}} 
 \index{lib.h@{lib.h}!run\_command\_in\_container@{run\_command\_in\_container}}
 \index{run\_command\_in\_container@{run\_command\_in\_container}!lib.h@{lib.h}}
 \doxysubsubsection{\texorpdfstring{run\_command\_in\_container()}{run\_command\_in\_container()}}
-{\footnotesize\ttfamily int run\+\_\+command\+\_\+in\+\_\+container (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name,  }\item[{const char $\ast$}]{command }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int run\+\_\+command\+\_\+in\+\_\+container (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name,  }\item[{char $\ast$}]{command }\end{DoxyParamCaption})}
 
 
 
@@ -126,6 +126,8 @@ Run a command in a container.
 {\em container\+\_\+name} & name of the container \\
 \hline
 {\em command} & command to execute \\
+\hline
+{\em command\+\_\+length} & length of the command \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

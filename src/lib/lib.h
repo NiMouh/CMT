@@ -37,9 +37,10 @@ int start_network_connection(const char *container_name);
  *
  * @param container_name name of the container
  * @param command command to execute
+ * @param command_length length of the command
  * @return int 0 on success, -1 on failure
  */
-int run_command_in_container(const char *container_name, const char *command);
+int run_command_in_container(const char *container_name, char *command);
 
 /**
  * @brief Run an application in a container

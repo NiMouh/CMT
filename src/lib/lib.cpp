@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <lxc/lxccontainer.h>
+#include <string.h>
+#define MAX_ARGS 100
 
 int create_new_container(const char *container_name)
 {
@@ -7,7 +9,7 @@ int create_new_container(const char *container_name)
     int result = 0;
 
     container = lxc_container_new(container_name, NULL);
-    if (!container)
+    if (container == NULL)
     {
         fprintf(stderr, "Failed to setup lxc_container struct\n\n");
         result = -1;
@@ -21,7 +23,7 @@ int create_new_container(const char *container_name)
         goto out;
     }
 
-    if (!container->createl(container, "ubuntu", NULL, NULL, LXC_CREATE_QUIET, "-d", "ubuntu", "-r", "focal", "-a", "amd64", NULL))
+    if (!container->createl(container, "download", NULL, NULL, LXC_CREATE_QUIET, "-d", "ubuntu", "-r", "bionic", "-a", "amd64", NULL))
     {
         fprintf(stderr, "Failed to create container rootfs: %s\n\n", container->error_string ? container->error_string : "unknown error");
         result = -1;
@@ -52,7 +54,7 @@ int remove_container(const char *container_name)
     int result = 0;
 
     container = lxc_container_new(container_name, NULL);
-    if (!container)
+    if (container == NULL)
     {
         fprintf(stderr, "Failed to setup lxc_container struct\n");
         result = -1;
@@ -130,13 +132,14 @@ int start_network_connection(const char *container_name) // TODO: Implement this
     return 0;
 }
 
-int run_command_in_container(const char *container_name, const char *command) // FIXME: This function is not working as expected
+int run_command_in_container(const char *container_name, char *command)
 {
-    int result = 0;
+    int result = 0, token_index = 0;
     struct lxc_container *container;
+    char *arguments[MAX_ARGS] = {0}, *token;
 
     container = lxc_container_new(container_name, NULL);
-    if (!container)
+    if (container == NULL)
     {
         fprintf(stderr, "Failed to setup lxc_container struct\n");
         result = -1;
@@ -154,9 +157,17 @@ int run_command_in_container(const char *container_name, const char *command) //
         }
     }
 
-    printf("Executing command \"%s\" in container %s\n", command, container_name);
+    printf("Executing command \"%s\" in container %s\n", command, container_name);    
+    
+    token = strtok(command, " "); // Tokenizing command
+    while (token != NULL)
+    {
+        arguments[token_index++] = token;
+        token = strtok(NULL, " ");
+    }
+    arguments[token_index] = NULL; // Set the last argument to NULL
 
-    if (!container->attach_run_wait(container, NULL, command, NULL))
+    if (container->attach_run_wait(container, NULL, command, arguments) < 0) // Run the command
     {
         fprintf(stderr, "Failed to execute command: %s\n", container->error_string ? container->error_string : "unknown error");
         result = -1;

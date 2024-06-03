@@ -2,8 +2,14 @@
 \label{lib_8cpp}\index{src/lib/lib.cpp@{src/lib/lib.cpp}}
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$lxc/lxccontainer.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
 Include dependency graph for lib.\+cpp\+:
 % FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{lib_8cpp_a29b7451465deac204c5f7cb1f9c6e1fc}{MAX\+\_\+\+ARGS}}~100
+\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -15,12 +21,21 @@ int \mbox{\hyperlink{lib_8cpp_a5fcc6feeff3a69139243f237a9a5293d}{list\+\_\+conta
 \begin{DoxyCompactList}\small\item\em List all the containers. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8cpp_aa09a1ab23c0a1fa6619c486527c88d4e}{start\+\_\+network\+\_\+connection}} (const char $\ast$container\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Start the network connection for a container. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{lib_8cpp_a13ed7c58c38c277f5834648759601c6a}{run\+\_\+command\+\_\+in\+\_\+container}} (const char $\ast$container\+\_\+name, const char $\ast$command)
+int \mbox{\hyperlink{lib_8cpp_ab4ddcb8c152ed53ae283726f3d2bc0db}{run\+\_\+command\+\_\+in\+\_\+container}} (const char $\ast$container\+\_\+name, char $\ast$command)
 \begin{DoxyCompactList}\small\item\em Run a command in a container. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8cpp_a4187f527ceeccdf4c121a65c42de0860}{run\+\_\+application\+\_\+in\+\_\+container}} (const char $\ast$container\+\_\+name, const char $\ast$application)
 \begin{DoxyCompactList}\small\item\em Run an application in a container. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8cpp_ad27ecf4327174946f44264327700ddcd}{copy\+\_\+file\+\_\+to\+\_\+container}} (const char $\ast$container\+\_\+name, const char $\ast$file\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Copy a file to a container. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{lib_8cpp_a29b7451465deac204c5f7cb1f9c6e1fc}\label{lib_8cpp_a29b7451465deac204c5f7cb1f9c6e1fc}} 
+\index{lib.cpp@{lib.cpp}!MAX\_ARGS@{MAX\_ARGS}}
+\index{MAX\_ARGS@{MAX\_ARGS}!lib.cpp@{lib.cpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_ARGS}{MAX\_ARGS}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+ARGS~100}
+
 
 
 \doxysubsection{Function Documentation}
@@ -113,11 +128,11 @@ Run an application in a container.
 \begin{DoxyReturn}{Returns}
 int 0 on success, -\/1 on failure 
 \end{DoxyReturn}
-\mbox{\Hypertarget{lib_8cpp_a13ed7c58c38c277f5834648759601c6a}\label{lib_8cpp_a13ed7c58c38c277f5834648759601c6a}} 
+\mbox{\Hypertarget{lib_8cpp_ab4ddcb8c152ed53ae283726f3d2bc0db}\label{lib_8cpp_ab4ddcb8c152ed53ae283726f3d2bc0db}} 
 \index{lib.cpp@{lib.cpp}!run\_command\_in\_container@{run\_command\_in\_container}}
 \index{run\_command\_in\_container@{run\_command\_in\_container}!lib.cpp@{lib.cpp}}
 \doxysubsubsection{\texorpdfstring{run\_command\_in\_container()}{run\_command\_in\_container()}}
-{\footnotesize\ttfamily int run\+\_\+command\+\_\+in\+\_\+container (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name,  }\item[{const char $\ast$}]{command }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int run\+\_\+command\+\_\+in\+\_\+container (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name,  }\item[{char $\ast$}]{command }\end{DoxyParamCaption})}
 
 
 
@@ -128,6 +143,8 @@ Run a command in a container.
 {\em container\+\_\+name} & name of the container \\
 \hline
 {\em command} & command to execute \\
+\hline
+{\em command\+\_\+length} & length of the command \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

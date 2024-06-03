@@ -3,7 +3,7 @@
 #include <string.h>
 
 #define CONTAINER_NAME_SIZE 100
-#define COMMAND_BUFFER_SIZE 100
+#define COMMAND_BUFFER_SIZE 1024
 #define APPLICATION_NAME_BUFFER_SIZE 100
 #define NETWORK_BUFFER_SIZE 100
 #define FILENAME_BUFFER_SIZE 100
@@ -152,6 +152,7 @@ int main(void)
             printf("Executing a command in a Container...\n");
 
             char command[COMMAND_BUFFER_SIZE] = {0};
+            int command_length = 0;
 
             printf("Enter the name of the Container: ");
             if (fgets(container_name, CONTAINER_NAME_SIZE, stdin) == NULL)
@@ -170,6 +171,13 @@ int main(void)
             }
 
             command[strcspn(command, "\n")] = 0; // Remove the newline character
+
+            command_length = strlen(command);
+            if (command_length == 0)
+            {
+                printf("Error: Command is empty.\n");
+                break;
+            }
 
             if (run_command_in_container(container_name, command) == 0) // execute the command
             {
