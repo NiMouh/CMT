@@ -1,6 +1,6 @@
 # *Container Management Tool*
 
-## Autores
+## Autor(es)
 
 - Simão Andrade: 118345
 
@@ -45,7 +45,7 @@ A documentação será gerada na pasta `docs/`.
 
 Primeiramente, é necessário instalar o *LXC*:
 
-```bash 
+```bash
 sudo apt-get install lxc
 ```
 
@@ -54,6 +54,12 @@ Ou, atualizar o *LXC*, caso já esteja instalado:
 ```bash
 sudo apt-get update
 sudo apt-get upgrade lxc
+```
+
+E as bibliotecas de desenvolvimento do *LXC*:
+
+```bash
+sudo apt-get install lxc-dev
 ```
 
 Para verificar se o *LXC* foi instalado corretamente, execute o seguinte comando:

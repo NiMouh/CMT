@@ -2,17 +2,24 @@
 #include <stdio.h>
 #include <string.h>
 
+#define EXIT_OPTION 8
+
 #define CONTAINER_NAME_SIZE 100
 #define COMMAND_BUFFER_SIZE 1024
 #define APPLICATION_NAME_BUFFER_SIZE 100
 #define NETWORK_BUFFER_SIZE 100
 #define FILENAME_BUFFER_SIZE 100
 
+void clear_screen(void)
+{
+    printf("\033[H\033[J");
+}
+
 int show_options_menu(void)
 {
     int option = 0;
 
-    printf("\033[H\033[J"); // Clear the screen
+    clear_screen(); // Clear the screen
     printf("   ______            __        _                    __  ___                                                  __     ______            __\n");
     printf("  / ____/___  ____  / /_____ _(_)___  ___  _____   /  |/  /___ _____  ____ _____ ____  ____ ___  ___  ____  / /_   /_  __/___  ____  / /\n");
     printf(" / /   / __ \\/ __ \\/ __/ __ `/ / __ \\/ _ \\/ ___/  / /|_/ / __ `/ __ \\/ __ `/ __ `/ _ \\/ __ `__ \\/ _ \\/ __ \\/ __/    / / / __ \\/ __ \\/ / \n");
@@ -40,6 +47,19 @@ int show_options_menu(void)
     return option;
 }
 
+int read_input(char *buffer, int buffer_size)
+{
+    if (fgets(buffer, buffer_size, stdin) == NULL)
+    {
+        printf("Error: Failed to read the input.\n");
+        return -1;
+    }
+
+    buffer[strcspn(buffer, "\n")] = 0; // Remove the newline character
+
+    return 0;
+}
+
 int main(void)
 {
 
@@ -55,19 +75,14 @@ int main(void)
 
         case 1: // Add a new Container
         {
-            printf("\033[H\033[J"); // Clear the screen
+            clear_screen(); // Clear the screen
 
             printf("Adding a new Container...\n");
 
             // Ask for a container name
             printf("Enter the name of the new Container: ");
-            if (fgets(container_name, CONTAINER_NAME_SIZE, stdin) == NULL)
-            {
-                printf("Error: Failed to read the container name.\n");
+            if (read_input(container_name, CONTAINER_NAME_SIZE) < 0)
                 break;
-            }
-
-            container_name[strcspn(container_name, "\n")] = 0; // Remove the newline character
 
             // Create the new Container
             if (create_new_container(container_name) == 0)
@@ -90,19 +105,14 @@ int main(void)
 
         case 2: // Remove a Container
         {
-            printf("\033[H\033[J"); // Clear the screen
+            clear_screen(); // Clear the screen
 
             printf("Removing a Container...\n");
 
             // Ask for a container name
             printf("Enter the name of the Container to remove: ");
-            if (fgets(container_name, CONTAINER_NAME_SIZE, stdin) == NULL)
-            {
-                printf("Error: Failed to read the container name.\n");
+            if (read_input(container_name, CONTAINER_NAME_SIZE) < 0)
                 break;
-            }
-
-            container_name[strcspn(container_name, "\n")] = 0; // Remove the newline character
 
             // Remove the Container
             if (remove_container(container_name) == 0)
@@ -125,7 +135,7 @@ int main(void)
 
         case 3: // List all Containers
         {
-            printf("\033[H\033[J"); // Clear the screen
+            clear_screen(); // Clear the screen
 
             printf("Listing all Containers...\n");
 
@@ -145,9 +155,9 @@ int main(void)
             break;
         }
 
-        case 4: // FIXME: Execute a command in a Container
+        case 4: // Execute a command in a Container
         {
-            printf("\033[H\033[J"); // Clear the screen
+            clear_screen(); // Clear the screen
 
             printf("Executing a command in a Container...\n");
 
@@ -155,13 +165,8 @@ int main(void)
             int command_length = 0;
 
             printf("Enter the name of the Container: ");
-            if (fgets(container_name, CONTAINER_NAME_SIZE, stdin) == NULL)
-            {
-                printf("Error: Failed to read the container name.\n");
+            if (read_input(container_name, CONTAINER_NAME_SIZE) < 0)
                 break;
-            }
-
-            container_name[strcspn(container_name, "\n")] = 0; // Remove the newline character
 
             printf("Enter the command to execute: ");
             if (fgets(command, COMMAND_BUFFER_SIZE, stdin) == NULL)
@@ -199,16 +204,11 @@ int main(void)
 
         case 5: // TODO: Establish a network connection with a Container
         {
-            printf("\033[H\033[J"); // Clear the screen
+            clear_screen(); // Clear the screen
 
             printf("Enter the name of the Container: ");
-            if (fgets(container_name, CONTAINER_NAME_SIZE, stdin) == NULL)
-            {
-                printf("Error: Failed to read the container name.\n");
+            if (read_input(container_name, CONTAINER_NAME_SIZE) < 0)
                 break;
-            }
-
-            container_name[strcspn(container_name, "\n")] = 0; // Remove the newline character
 
             if (start_network_connection(container_name) == 0)
             {
@@ -230,18 +230,13 @@ int main(void)
 
         case 6: // TODO: Execute an application in a Container
         {
-            printf("\033[H\033[J"); // Clear the screen
+            clear_screen(); // Clear the screen
 
             printf("Executing an application in a Container...\n");
 
             printf("Enter the name of the Container: ");
-            if (fgets(container_name, CONTAINER_NAME_SIZE, stdin) == NULL)
-            {
-                printf("Error: Failed to read the container name.\n");
+            if (read_input(container_name, CONTAINER_NAME_SIZE) < 0)
                 break;
-            }
-
-            container_name[strcspn(container_name, "\n")] = 0; // Remove the newline character
 
             char application[APPLICATION_NAME_BUFFER_SIZE] = {0};
 
@@ -274,16 +269,11 @@ int main(void)
 
         case 7: // TODO: Copy a file to a Container
         {
-            printf("\033[H\033[J"); // Clear the screen
+            clear_screen(); // Clear the screen
 
             printf("Enter the name of the Container: ");
-            if (fgets(container_name, CONTAINER_NAME_SIZE, stdin) == NULL)
-            {
-                printf("Error: Failed to read the container name.\n");
+            if (read_input(container_name, CONTAINER_NAME_SIZE) < 0)
                 break;
-            }
-
-            container_name[strcspn(container_name, "\n")] = 0; // Remove the newline character
 
             char file_name[FILENAME_BUFFER_SIZE] = {0};
 
@@ -314,11 +304,11 @@ int main(void)
             break;
         }
 
-        case 8: // Exit
+        case EXIT_OPTION:
             printf("Exiting...\n");
             break;
         default:
-            printf("Error: Invalid option. Please ENTER a number between 1 and 8.\n");
+            printf("Error: Invalid option. Please ENTER a number between 1 and %d.\n", EXIT_OPTION);
             break;
         }
     } while (option != 8);
