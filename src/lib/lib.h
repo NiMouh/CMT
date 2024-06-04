@@ -26,13 +26,13 @@ int remove_container(const char *container_name);
 int list_containers(void);
 
 /**
- * @brief Start the network connection for a container
+ * @brief Start the connection for a container
  *
  * @param container_name name of the container
  * 
  * @return int 0 on success, -1 on failure
  */
-int start_network_connection(const char *container_name);
+int start_connection(const char *container_name);
 
 /**
  * @brief Run a command in a container

@@ -19,14 +19,14 @@ O programa deve ser capaz de:
 - [x] Criar/Remover *containers*;
 - [x] Executar comandos num *container* (e.g. listar ficheiros) e visualizar o output;
 - [x] Listar *containers* em execução;
-- [x] Definir limites de recursos para um *container* (e.g. CPU, memória);
+- [ ] Definir limites de recursos para um *container* (e.g. CPU, memória);
 - [ ] Copiar ficheiros para dentro de um *container*;
-- [ ] Estabelecer uma ligação de rede com o *container*;
+- [x] Estabelecer uma ligação com o *container*;
 - [ ] Executar aplicações num *container*.
 
 Extras:
 
-- [ ] Criação de *logs* de atividade.
+- [x] Criação de *logs* de atividade.
 - [ ] Dinamicamente alterar os limites de recursos de um *container*;
 
 ## Implementação

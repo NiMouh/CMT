@@ -12,9 +12,6 @@
 #define CGROUP_SUBSYSTEM_BUFFER_SIZE 100
 #define CGROUP_LIMITS_BUFFER_SIZE 100
 
-// 7.
-#define NETWORK_BUFFER_SIZE 100
-
 // 8.
 #define APPLICATION_NAME_BUFFER_SIZE 100
 
@@ -287,7 +284,7 @@ int main(void)
             break;
         }
 
-        case 7: // TODO: Establish a network connection with a Container
+        case 7: // Establish a connection with a Container
         {
             clear_screen(); 
 
@@ -295,13 +292,13 @@ int main(void)
             if (read_input(container_name, CONTAINER_NAME_SIZE) < 0)
                 break;
 
-            if (start_network_connection(container_name) == 0)
+            if (start_connection(container_name) == 0)
             {
-                printf("Network connection established successfully with Container %s.\n", container_name);
+                printf("Connection established successfully with Container %s.\n", container_name);
             }
             else
             {
-                printf("Error: Failed to establish network connection with Container %s.\n", container_name);
+                printf("Error: Failed to establish connection with Container %s.\n", container_name);
             }
 
             printf("Press ENTER to continue...");

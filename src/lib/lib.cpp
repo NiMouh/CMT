@@ -1,11 +1,38 @@
 #include <stdio.h>
-#include <lxc/lxccontainer.h>
 #include <string.h>
-#define MAX_ARGS 100
+#include <lxc/lxccontainer.h>
+#include <unistd.h>
+#include <time.h>
+
+#define MAX_COMMAND_ARGS 100
+
+#define LOG_MESSAGE_SIZE 100
+#define LOG_FILE_NAME "log.txt"
+
+int add_log_message(const char *message, const char *file_name)
+{
+    FILE *file = fopen(file_name, "a");
+    if (file == NULL)
+    {
+        fprintf(stderr, "Failed to open file\n");
+        return -1;
+    }
+
+    time_t current_time = time(NULL);
+    struct tm *time_info = localtime(&current_time);
+    char time_string[26];
+    strftime(time_string, 26, "%c", time_info);
+
+    fprintf(file, "%s - %s\n", time_string, message);
+
+    fclose(file);
+    return 0;
+}
 
 int create_new_container(const char *container_name)
 {
     struct lxc_container *container;
+    char log_message[LOG_MESSAGE_SIZE] = {0};
     int result = 0;
 
     container = lxc_container_new(container_name, NULL);
@@ -30,6 +57,9 @@ int create_new_container(const char *container_name)
         goto out;
     }
 
+    snprintf(log_message, LOG_MESSAGE_SIZE, "INFO LOG: Container %s created", container_name);
+    add_log_message(log_message, LOG_FILE_NAME);
+
     printf("Container %s created\n", container_name);
 
     if (!container->start(container, 0, NULL))
@@ -38,6 +68,9 @@ int create_new_container(const char *container_name)
         result = -1;
         goto out;
     }
+
+    snprintf(log_message, LOG_MESSAGE_SIZE, "INFO LOG: Container %s started", container_name);
+    add_log_message(log_message, LOG_FILE_NAME);
 
     printf("Container %s started\n", container_name);
     printf("Current state: %s\n", container->state(container));
@@ -51,6 +84,7 @@ out:
 int remove_container(const char *container_name)
 {
     struct lxc_container *container;
+    char log_message[LOG_MESSAGE_SIZE] = {0};
     int result = 0;
 
     container = lxc_container_new(container_name, NULL);
@@ -75,6 +109,9 @@ int remove_container(const char *container_name)
         goto out;
     }
 
+    snprintf(log_message, LOG_MESSAGE_SIZE, "WARNING LOG: Container %s stopped", container_name);
+    add_log_message(log_message, LOG_FILE_NAME);
+
     printf("Container %s\n", container_name);
     printf("Current state: %s\n", container->state(container));
 
@@ -84,6 +121,9 @@ int remove_container(const char *container_name)
         result = -1;
         goto out;
     }
+
+    snprintf(log_message, LOG_MESSAGE_SIZE, "WARNING LOG: Container %s destroyed", container_name);
+    add_log_message(log_message, LOG_FILE_NAME);
 
     printf("Container %s removed\n", container_name);
 
@@ -95,9 +135,8 @@ out:
 int list_containers(void)
 {
     struct lxc_container **containers;
-    char **containers_names;
-    int number_of_active_containers = 0;
-    int result = 0;
+    char **containers_names, log_message[LOG_MESSAGE_SIZE] = {0};
+    int number_of_active_containers = 0, result = 0;
 
     number_of_active_containers = list_active_containers(NULL, &containers_names, &containers);
     if (number_of_active_containers < 0)
@@ -124,22 +163,61 @@ int list_containers(void)
     }
     printf("\n");
 
-    free(containers_names);
+    snprintf(log_message, LOG_MESSAGE_SIZE, "INFO LOG: Listed %d active containers", number_of_active_containers);
+    add_log_message(log_message, LOG_FILE_NAME);
+
 out:
+    free(containers_names);
     return result;
 }
 
-int start_network_connection(const char *container_name) // TODO: Implement this function
+int start_connection(const char *container_name)
 {
-    printf("Starting network connection for container %s\n", container_name);
-    return 0;
+    struct lxc_container *container;
+    int result = 0, ttynum = -1; // allocate the first available tty 
+    char log_message[LOG_MESSAGE_SIZE] = {0};
+
+    container = lxc_container_new(container_name, NULL);
+    if (container == NULL)
+    {
+        fprintf(stderr, "Failed to setup lxc_container struct\n\n");
+        result = -1;
+        goto out;
+    }
+
+    if (!container->is_running(container)) // not running
+    {
+        printf("Starting the container\n\n");
+        if (!container->start(container, 0, NULL))
+        {
+            fprintf(stderr, "Failed to start the container: %s\n", container->error_string ? container->error_string : "unknown error");
+            result = -1;
+            goto out;
+        }
+    }
+
+    printf("Starting connection for container %s\n", container_name);
+
+    if (container->console(container, ttynum, STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO, 1) < 0)
+    {
+        fprintf(stderr, "Failed to start connection: %s\n", container->error_string ? container->error_string : "unknown error");
+        result = -1;
+        goto out;
+    }
+
+    snprintf(log_message, LOG_MESSAGE_SIZE, "INFO LOG: Connection started for container %s", container_name);
+    add_log_message(log_message, LOG_FILE_NAME);
+
+out:
+    lxc_container_put(container);
+    return result;
 }
 
 int run_command_in_container(const char *container_name, char *command)
 {
     int result = 0, token_index = 0;
     struct lxc_container *container;
-    char *arguments[MAX_ARGS] = {0}, *token;
+    char *arguments[MAX_COMMAND_ARGS] = {0}, *token, log_message[LOG_MESSAGE_SIZE] = {0};
 
     container = lxc_container_new(container_name, NULL);
     if (container == NULL)
@@ -176,6 +254,9 @@ int run_command_in_container(const char *container_name, char *command)
         result = -1;
         goto out;
     }
+
+    snprintf(log_message, LOG_MESSAGE_SIZE, "INFO LOG: Command \"%s\" executed in container %s", command, container_name);
+    add_log_message(log_message, LOG_FILE_NAME);
 
 out:
     lxc_container_put(container);
@@ -257,7 +338,7 @@ int check_limits_of_system_resources(const char *container_name, const char *cgr
         }
     }
 
-    printf("Checking limits of system resources for container %s\n", container_name);
+    printf("Checking limits of system resources (%s) for container %s\n", cgroup_subsystem, container_name);
 
     if (container->get_cgroup_item(container, cgroup_subsystem, cgroup_value, 0) < 0)
     {
