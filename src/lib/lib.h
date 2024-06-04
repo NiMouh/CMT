@@ -65,4 +65,25 @@ int run_application_in_container(const char *container_name, const char *applica
  */
 int copy_file_to_container(const char *container_name, const char *file_name);
 
+/**
+ * @brief Define limits of system resources for a container
+ * 
+ * @param container_name name of the container
+ * @param cgroup_subsystem cgroup subsystem (resource)
+ * @param cgroup_value cgroup value
+ * 
+ * @return int 0 on success, -1 on failure
+ */
+int define_limits_of_system_resources(const char *container_name, const char *cgroup_subsystem, const char *cgroup_value);
+
+/**
+ * @brief Get the limits defined of a given cgroup subsystem
+ * 
+ * @param container_name name of the container
+ * @param cgroup_subsystem cgroup subsystem (resource)
+ * 
+ * @return int 0 on success, -1 on failure
+ */
+int check_limits_of_system_resources(const char *container_name, const char *cgroup_subsystem);
+
 #endif // LIB_H

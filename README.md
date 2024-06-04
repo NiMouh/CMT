@@ -18,6 +18,8 @@ O programa deve ser capaz de:
 
 - [x] Criar/Remover *containers*;
 - [x] Executar comandos num *container* (e.g. listar ficheiros) e visualizar o output;
+- [x] Listar *containers* em execução;
+- [x] Definir limites de recursos para um *container* (e.g. CPU, memória);
 - [ ] Copiar ficheiros para dentro de um *container*;
 - [ ] Estabelecer uma ligação de rede com o *container*;
 - [ ] Executar aplicações num *container*.
@@ -28,6 +30,77 @@ Extras:
 - [ ] Dinamicamente alterar os limites de recursos de um *container*;
 
 ## Implementação
+
+### Estrutura do Projeto
+
+```console
+├── docs/ -> Documentação do código
+│   ├── html
+│   └── latex
+│
+├── src/ -> Código fonte
+│   ├── main.cpp -> Programa principal (CLI)
+│   └── lib/ -> Bibliotecas
+│       ├── lib.cpp -> Implementação das funcionalidades
+│       └── lib.h -> Declaração das funcionalidades
+│
+├── img/ -> Imagens do projeto
+│
+├── video/ -> Vídeo de execução do programa
+│   └── video.mp4
+│
+├── Doxyfile -> Configuração do Doxygen
+├── Makefile -> Compilação do programa
+└── README.md -> Descrição do projeto
+```
+
+### Interface
+
+<p align="center"><img src="img/interface.png" alt="Interface" width="800"></p>
+
+<p align="center"><i>Fig. 1 - Interface do programa</i></p>
+
+### Funcionalidades
+
+#### Criação de *containers*
+
+Para criar um *container*, é chamada a seguinte função:
+
+```cpp
+int create_new_container(const char *container_name);
+```
+
+Cria um novo *container* com o nome especificado. O *container* é criado sob a distribuição *Ubuntu bionic*, com a arquitetura *amd64*. No final, é retornado o *PID* do *container*.
+
+#### Remoção de *containers*
+
+Para remover um *container*, é chamada a seguinte função:
+
+```cpp
+int remove_container(const char *container_name);
+```
+
+Remove o *container* com o nome especificado.
+
+#### Listagem de *containers* em execução
+
+Para listar os *containers* em execução, é chamada a seguinte função:
+
+```cpp
+int list_running_containers();
+```
+
+Lista todos os *containers* em execução, mostrando o *PID* e o nome de cada *container*.
+
+#### Execução de comandos num *container*
+
+Para executar comandos num *container*, é chamada a seguinte função:
+
+```cpp
+int run_command_in_container(const char *container_name, char *command);
+```
+
+Executa o comando especificado no *container* com o nome especificado. De modo a conseguir executar o comando, é necessário que o *container* esteja em execução. O comando dado pode ter multiplos argumentos, então o mesmo é *tokenized* (usando o espaço como delimitador) e passado todos os argumentos para a função `attach_run_wait`, que executa o comando no *container* e espera que o mesmo termine.
 
 ## Testes e Resultados
 

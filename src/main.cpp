@@ -2,12 +2,23 @@
 #include <stdio.h>
 #include <string.h>
 
-#define EXIT_OPTION 8
-
+#define EXIT_OPTION 10
 #define CONTAINER_NAME_SIZE 100
+
+// 4.
 #define COMMAND_BUFFER_SIZE 1024
-#define APPLICATION_NAME_BUFFER_SIZE 100
+
+// 5. and 6.
+#define CGROUP_SUBSYSTEM_BUFFER_SIZE 100
+#define CGROUP_LIMITS_BUFFER_SIZE 100
+
+// 7.
 #define NETWORK_BUFFER_SIZE 100
+
+// 8.
+#define APPLICATION_NAME_BUFFER_SIZE 100
+
+// 9.
 #define FILENAME_BUFFER_SIZE 100
 
 void clear_screen(void)
@@ -19,7 +30,7 @@ int show_options_menu(void)
 {
     int option = 0;
 
-    clear_screen(); // Clear the screen
+    clear_screen(); 
     printf("   ______            __        _                    __  ___                                                  __     ______            __\n");
     printf("  / ____/___  ____  / /_____ _(_)___  ___  _____   /  |/  /___ _____  ____ _____ ____  ____ ___  ___  ____  / /_   /_  __/___  ____  / /\n");
     printf(" / /   / __ \\/ __ \\/ __/ __ `/ / __ \\/ _ \\/ ___/  / /|_/ / __ `/ __ \\/ __ `/ __ `/ _ \\/ __ `__ \\/ _ \\/ __ \\/ __/    / / / __ \\/ __ \\/ / \n");
@@ -30,10 +41,12 @@ int show_options_menu(void)
     printf("2. Remove a Container\n");
     printf("3. List all Containers\n");
     printf("4. Execute a command in a Container\n");
-    printf("5. Establish a network connection with a Container\n");
-    printf("6. Execute an application in a Container\n");
-    printf("7. Copy a file to a Container\n");
-    printf("8. Exit\n\n");
+    printf("5. Define limits of system resources\n");
+    printf("6. Check limits of system resources\n");
+    printf("7. Establish a network connection with a Container\n");
+    printf("8. Execute an application in a Container\n");
+    printf("9. Copy a file to a Container\n");
+    printf("10. Exit\n\n");
     printf("Choose an option: ");
 
     if (scanf("%d", &option) != 1)
@@ -75,7 +88,7 @@ int main(void)
 
         case 1: // Add a new Container
         {
-            clear_screen(); // Clear the screen
+            clear_screen(); 
 
             printf("Adding a new Container...\n");
 
@@ -105,7 +118,7 @@ int main(void)
 
         case 2: // Remove a Container
         {
-            clear_screen(); // Clear the screen
+            clear_screen(); 
 
             printf("Removing a Container...\n");
 
@@ -135,7 +148,7 @@ int main(void)
 
         case 3: // List all Containers
         {
-            clear_screen(); // Clear the screen
+            clear_screen(); 
 
             printf("Listing all Containers...\n");
 
@@ -157,7 +170,7 @@ int main(void)
 
         case 4: // Execute a command in a Container
         {
-            clear_screen(); // Clear the screen
+            clear_screen(); 
 
             printf("Executing a command in a Container...\n");
 
@@ -202,9 +215,81 @@ int main(void)
             break;
         }
 
-        case 5: // TODO: Establish a network connection with a Container
+        case 5: // FIXME: Define limits of system resources (cgroups)
         {
-            clear_screen(); // Clear the screen
+            clear_screen();
+
+            printf("Defining limits of system resources...\n");
+
+            printf("Enter the name of the Container: ");
+            if (read_input(container_name, CONTAINER_NAME_SIZE) < 0)
+                break;
+
+            char cgroup_subsystem[CGROUP_SUBSYSTEM_BUFFER_SIZE] = {0}, cgroup_limits[CGROUP_LIMITS_BUFFER_SIZE] = {0};
+
+            printf("Enter the name of the cgroup subsystem: ");
+            if (read_input(cgroup_subsystem, CGROUP_SUBSYSTEM_BUFFER_SIZE) < 0)
+                break;
+
+            printf("Enter the cgroup limits: ");
+            if (read_input(cgroup_limits, CGROUP_LIMITS_BUFFER_SIZE) < 0)
+                break;
+            
+            if (define_limits_of_system_resources(container_name, cgroup_subsystem, cgroup_limits) == 0)
+            {
+                printf("System resources limits defined successfully.\n");
+            }
+            else
+            {
+                printf("Error: Failed to define system resources limits.\n");
+            }
+
+            printf("Press ENTER to continue...");
+            while (getchar() != '\n') // Clear the input buffer
+                ;
+            
+            memset(container_name, 0, CONTAINER_NAME_SIZE); // clear name buffer
+
+            break;
+        }
+
+        case 6: // FIXME: Check limits of system resources (cgroups)
+        {
+            clear_screen(); 
+
+            printf("Checking limits of system resources...\n");
+
+            char cgroup_subsystem[CGROUP_SUBSYSTEM_BUFFER_SIZE] = {0};
+
+            printf("Enter the name of the Container: ");
+            if (read_input(container_name, CONTAINER_NAME_SIZE) < 0)
+                break;
+
+            printf("Enter the name of the cgroup subsystem: ");
+            if (read_input(cgroup_subsystem, CGROUP_SUBSYSTEM_BUFFER_SIZE) < 0)
+                break;
+            
+            if (check_limits_of_system_resources(container_name, cgroup_subsystem) == 0)
+            {
+                printf("System resources limits checked successfully.\n");
+            }
+            else
+            {
+                printf("Error: Failed to check system resources limits.\n");
+            }
+
+            printf("Press ENTER to continue...");
+            while (getchar() != '\n') // Clear the input buffer
+                ;
+
+            memset(container_name, 0, CONTAINER_NAME_SIZE); // clear name buffer
+
+            break;
+        }
+
+        case 7: // TODO: Establish a network connection with a Container
+        {
+            clear_screen(); 
 
             printf("Enter the name of the Container: ");
             if (read_input(container_name, CONTAINER_NAME_SIZE) < 0)
@@ -228,9 +313,9 @@ int main(void)
             break;
         }
 
-        case 6: // TODO: Execute an application in a Container
+        case 8: // TODO: Execute an application in a Container
         {
-            clear_screen(); // Clear the screen
+            clear_screen(); 
 
             printf("Executing an application in a Container...\n");
 
@@ -267,9 +352,9 @@ int main(void)
             break;
         }
 
-        case 7: // TODO: Copy a file to a Container
+        case 9: // TODO: Copy a file to a Container
         {
-            clear_screen(); // Clear the screen
+            clear_screen(); 
 
             printf("Enter the name of the Container: ");
             if (read_input(container_name, CONTAINER_NAME_SIZE) < 0)
@@ -311,7 +396,7 @@ int main(void)
             printf("Error: Invalid option. Please ENTER a number between 1 and %d.\n", EXIT_OPTION);
             break;
         }
-    } while (option != 8);
+    } while (option != EXIT_OPTION);
 
     return 0;
 }

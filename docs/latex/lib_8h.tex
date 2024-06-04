@@ -18,10 +18,34 @@ int \mbox{\hyperlink{lib_8h_ab4ddcb8c152ed53ae283726f3d2bc0db}{run\+\_\+command\
 int \mbox{\hyperlink{lib_8h_a4187f527ceeccdf4c121a65c42de0860}{run\+\_\+application\+\_\+in\+\_\+container}} (const char $\ast$container\+\_\+name, const char $\ast$application)
 \begin{DoxyCompactList}\small\item\em Run an application in a container. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8h_ad27ecf4327174946f44264327700ddcd}{copy\+\_\+file\+\_\+to\+\_\+container}} (const char $\ast$container\+\_\+name, const char $\ast$file\+\_\+name)
-\begin{DoxyCompactList}\small\item\em Copy a file to a container. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Copy a file to a container. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{lib_8h_abd962a2b6ca5d3bd24d35f681e57eac8}{define\+\_\+limits\+\_\+of\+\_\+system\+\_\+resources}} (const char $\ast$container\+\_\+name, const char $\ast$cgroup\+\_\+subsystem, const char $\ast$cgroup\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Define limits of system resources for a container. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{lib_8h_a936f1b8bc4c41d13df878cba833afba0}{check\+\_\+limits\+\_\+of\+\_\+system\+\_\+resources}} (const char $\ast$container\+\_\+name, const char $\ast$cgroup\+\_\+subsystem)
+\begin{DoxyCompactList}\small\item\em Get the limits defined of a given cgroup subsystem. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{lib_8h_a936f1b8bc4c41d13df878cba833afba0}\label{lib_8h_a936f1b8bc4c41d13df878cba833afba0}} 
+\index{lib.h@{lib.h}!check\_limits\_of\_system\_resources@{check\_limits\_of\_system\_resources}}
+\index{check\_limits\_of\_system\_resources@{check\_limits\_of\_system\_resources}!lib.h@{lib.h}}
+\doxysubsubsection{\texorpdfstring{check\_limits\_of\_system\_resources()}{check\_limits\_of\_system\_resources()}}
+{\footnotesize\ttfamily int check\+\_\+limits\+\_\+of\+\_\+system\+\_\+resources (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name,  }\item[{const char $\ast$}]{cgroup\+\_\+subsystem }\end{DoxyParamCaption})}
+
+
+
+Get the limits defined of a given cgroup subsystem. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em container\+\_\+name} & name of the container \\
+\hline
+{\em cgroup\+\_\+subsystem} & cgroup subsystem (resource)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 on success, -\/1 on failure 
+\end{DoxyReturn}
 \mbox{\Hypertarget{lib_8h_ad27ecf4327174946f44264327700ddcd}\label{lib_8h_ad27ecf4327174946f44264327700ddcd}} 
 \index{lib.h@{lib.h}!copy\_file\_to\_container@{copy\_file\_to\_container}}
 \index{copy\_file\_to\_container@{copy\_file\_to\_container}!lib.h@{lib.h}}
@@ -36,7 +60,7 @@ Copy a file to a container.
 \begin{DoxyParams}{Parameters}
 {\em container\+\_\+name} & name of the container \\
 \hline
-{\em file\+\_\+name} & name of the file \\
+{\em file\+\_\+name} & name of the file\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -55,6 +79,28 @@ Create a new LXC container object.
 
 \begin{DoxyParams}{Parameters}
 {\em container\+\_\+name} & name of the container \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 on success, -\/1 on failure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lib_8h_abd962a2b6ca5d3bd24d35f681e57eac8}\label{lib_8h_abd962a2b6ca5d3bd24d35f681e57eac8}} 
+\index{lib.h@{lib.h}!define\_limits\_of\_system\_resources@{define\_limits\_of\_system\_resources}}
+\index{define\_limits\_of\_system\_resources@{define\_limits\_of\_system\_resources}!lib.h@{lib.h}}
+\doxysubsubsection{\texorpdfstring{define\_limits\_of\_system\_resources()}{define\_limits\_of\_system\_resources()}}
+{\footnotesize\ttfamily int define\+\_\+limits\+\_\+of\+\_\+system\+\_\+resources (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name,  }\item[{const char $\ast$}]{cgroup\+\_\+subsystem,  }\item[{const char $\ast$}]{cgroup\+\_\+value }\end{DoxyParamCaption})}
+
+
+
+Define limits of system resources for a container. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em container\+\_\+name} & name of the container \\
+\hline
+{\em cgroup\+\_\+subsystem} & cgroup subsystem (resource) \\
+\hline
+{\em cgroup\+\_\+value} & cgroup value\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -85,7 +131,7 @@ Remove an existing LXC container object.
 
 
 \begin{DoxyParams}{Parameters}
-{\em container\+\_\+name} & name of the container \\
+{\em container\+\_\+name} & name of the container\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -105,7 +151,7 @@ Run an application in a container.
 \begin{DoxyParams}{Parameters}
 {\em container\+\_\+name} & name of the container \\
 \hline
-{\em application} & application to execute \\
+{\em application} & application to execute\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -127,7 +173,7 @@ Run a command in a container.
 \hline
 {\em command} & command to execute \\
 \hline
-{\em command\+\_\+length} & length of the command \\
+{\em command\+\_\+length} & length of the command\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -145,7 +191,7 @@ Start the network connection for a container.
 
 
 \begin{DoxyParams}{Parameters}
-{\em container\+\_\+name} & name of the container \\
+{\em container\+\_\+name} & name of the container\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

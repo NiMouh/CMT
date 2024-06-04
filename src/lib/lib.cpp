@@ -96,28 +96,31 @@ int list_containers(void)
 {
     struct lxc_container **containers;
     char **containers_names;
-    int number_of_containers = 0;
+    int number_of_active_containers = 0;
     int result = 0;
 
-    number_of_containers = list_all_containers(NULL, &containers_names, &containers);
-    if (number_of_containers < 0)
+    number_of_active_containers = list_active_containers(NULL, &containers_names, &containers);
+    if (number_of_active_containers < 0)
     {
         fprintf(stderr, "Failed to list containers\n\n");
         result = -1;
         goto out;
     }
 
-    if (number_of_containers == 0)
+    if (number_of_active_containers == 0)
     {
-        printf("No containers found!\n\n");
+        printf("No active containers found!\n\n");
         goto out;
     }
 
-    printf("Number of containers: %d\n\n", number_of_containers);
-    for (int index = 0; index < number_of_containers; index++)
+    printf("NUMBER OF CONTAINERS: %d\n\n", number_of_active_containers);
+    for (int index = 0; index < number_of_active_containers; index++)
     {
-        printf("Container %d: %s\n", index, containers_names[index]);
-        printf("Current state: %s\n", containers[index]->state(containers[index]));
+        printf("--- Container %d ---\n", index + 1);
+        printf("Name: %s\n", containers_names[index]);
+        printf("State: %s\n", containers[index]->state(containers[index]));
+        printf("PID: %d\n", containers[index]->init_pid(containers[index]));
+        printf("IP: %s\n", *containers[index]->get_ips(containers[index], "eth0", "inet", 0));
     }
     printf("\n");
 
@@ -157,8 +160,8 @@ int run_command_in_container(const char *container_name, char *command)
         }
     }
 
-    printf("Executing command \"%s\" in container %s\n", command, container_name);    
-    
+    printf("Executing command \"%s\" in container %s\n", command, container_name);
+
     token = strtok(command, " "); // Tokenizing command
     while (token != NULL)
     {
@@ -189,4 +192,84 @@ int copy_file_to_container(const char *container_name, const char *file_name) //
 {
     printf("Copying file \"%s\" to container %s\n", file_name, container_name);
     return 0;
+}
+
+int define_limits_of_system_resources(const char *container_name, const char *cgroup_subsystem, const char *cgroup_value) // FIXME: Cgroup value is not being set
+{
+    struct lxc_container *container;
+    int result = 0;
+
+    container = lxc_container_new(container_name, NULL);
+    if (container == NULL)
+    {
+        fprintf(stderr, "Failed to setup lxc_container struct\n");
+        result = -1;
+        goto out;
+    }
+
+    if (!container->is_running(container)) // not running
+    {
+        printf("Starting the container\n\n");
+        if (!container->start(container, 0, NULL))
+        {
+            fprintf(stderr, "Failed to start the container: %s\n", container->error_string ? container->error_string : "unknown error");
+            result = -1;
+            goto out;
+        }
+    }
+
+    printf("Defining limits of system resources for container %s\n", container_name);
+
+    if (!container->set_cgroup_item(container, cgroup_subsystem, cgroup_value))
+    {
+        fprintf(stderr, "Failed to set cgroup: %s\n", container->error_string ? container->error_string : "unknown error");
+        result = -1;
+        goto out;
+    }
+
+out:
+    lxc_container_put(container);
+    return result;
+}
+
+int check_limits_of_system_resources(const char *container_name, const char *cgroup_subsystem) // FIXME: Cgroup value is not being retrieved
+{
+    struct lxc_container *container;
+    int result = 0;
+    char *cgroup_value = NULL;
+
+    container = lxc_container_new(container_name, NULL);
+    if (container == NULL)
+    {
+        fprintf(stderr, "Failed to setup lxc_container struct\n");
+        result = -1;
+        goto out;
+    }
+
+    if (!container->is_running(container)) // not running
+    {
+        printf("Starting the container\n\n");
+        if (!container->start(container, 0, NULL))
+        {
+            fprintf(stderr, "Failed to start the container: %s\n", container->error_string ? container->error_string : "unknown error");
+            result = -1;
+            goto out;
+        }
+    }
+
+    printf("Checking limits of system resources for container %s\n", container_name);
+
+    if (container->get_cgroup_item(container, cgroup_subsystem, cgroup_value, 0) < 0)
+    {
+        fprintf(stderr, "Failed to get cgroup: %s\n", container->error_string ? container->error_string : "unknown error");
+        result = -1;
+        goto out;
+    }
+
+    printf("The limit defined in the cgroup subsystem %s is %s\n", cgroup_subsystem, cgroup_value);
+    free(cgroup_value);
+
+out:
+    lxc_container_put(container);
+    return result;
 }

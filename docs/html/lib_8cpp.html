@@ -109,6 +109,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ad27ecf4327174946f44264327700ddcd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8cpp.html#ad27ecf4327174946f44264327700ddcd">copy_file_to_container</a> (const char *container_name, const char *file_name)</td></tr>
 <tr class="memdesc:ad27ecf4327174946f44264327700ddcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy a file to a container.  <a href="lib_8cpp.html#ad27ecf4327174946f44264327700ddcd">More...</a><br /></td></tr>
 <tr class="separator:ad27ecf4327174946f44264327700ddcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd962a2b6ca5d3bd24d35f681e57eac8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8cpp.html#abd962a2b6ca5d3bd24d35f681e57eac8">define_limits_of_system_resources</a> (const char *container_name, const char *cgroup_subsystem, const char *cgroup_value)</td></tr>
+<tr class="memdesc:abd962a2b6ca5d3bd24d35f681e57eac8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define limits of system resources for a container.  <a href="lib_8cpp.html#abd962a2b6ca5d3bd24d35f681e57eac8">More...</a><br /></td></tr>
+<tr class="separator:abd962a2b6ca5d3bd24d35f681e57eac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a936f1b8bc4c41d13df878cba833afba0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8cpp.html#a936f1b8bc4c41d13df878cba833afba0">check_limits_of_system_resources</a> (const char *container_name, const char *cgroup_subsystem)</td></tr>
+<tr class="memdesc:a936f1b8bc4c41d13df878cba833afba0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the limits defined of a given cgroup subsystem.  <a href="lib_8cpp.html#a936f1b8bc4c41d13df878cba833afba0">More...</a><br /></td></tr>
+<tr class="separator:a936f1b8bc4c41d13df878cba833afba0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a29b7451465deac204c5f7cb1f9c6e1fc"></a>
@@ -126,6 +132,44 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a936f1b8bc4c41d13df878cba833afba0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a936f1b8bc4c41d13df878cba833afba0">&#9670;&nbsp;</a></span>check_limits_of_system_resources()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int check_limits_of_system_resources </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>container_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>cgroup_subsystem</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the limits defined of a given cgroup subsystem. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">container_name</td><td>name of the container </td></tr>
+    <tr><td class="paramname">cgroup_subsystem</td><td>cgroup subsystem (resource)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int 0 on success, -1 on failure </dd></dl>
+
+</div>
+</div>
 <a id="ad27ecf4327174946f44264327700ddcd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad27ecf4327174946f44264327700ddcd">&#9670;&nbsp;</a></span>copy_file_to_container()</h2>
 
@@ -156,7 +200,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">container_name</td><td>name of the container </td></tr>
-    <tr><td class="paramname">file_name</td><td>name of the file </td></tr>
+    <tr><td class="paramname">file_name</td><td>name of the file</td></tr>
   </table>
   </dd>
 </dl>
@@ -184,6 +228,51 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">container_name</td><td>name of the container </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int 0 on success, -1 on failure </dd></dl>
+
+</div>
+</div>
+<a id="abd962a2b6ca5d3bd24d35f681e57eac8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd962a2b6ca5d3bd24d35f681e57eac8">&#9670;&nbsp;</a></span>define_limits_of_system_resources()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int define_limits_of_system_resources </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>container_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>cgroup_subsystem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>cgroup_value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define limits of system resources for a container. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">container_name</td><td>name of the container </td></tr>
+    <tr><td class="paramname">cgroup_subsystem</td><td>cgroup subsystem (resource) </td></tr>
+    <tr><td class="paramname">cgroup_value</td><td>cgroup value</td></tr>
   </table>
   </dd>
 </dl>
@@ -231,7 +320,7 @@ Functions</h2></td></tr>
 <p>Remove an existing LXC container object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">container_name</td><td>name of the container </td></tr>
+    <tr><td class="paramname">container_name</td><td>name of the container</td></tr>
   </table>
   </dd>
 </dl>
@@ -269,7 +358,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">container_name</td><td>name of the container </td></tr>
-    <tr><td class="paramname">application</td><td>application to execute </td></tr>
+    <tr><td class="paramname">application</td><td>application to execute</td></tr>
   </table>
   </dd>
 </dl>
@@ -308,7 +397,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">container_name</td><td>name of the container </td></tr>
     <tr><td class="paramname">command</td><td>command to execute </td></tr>
-    <tr><td class="paramname">command_length</td><td>length of the command </td></tr>
+    <tr><td class="paramname">command_length</td><td>length of the command</td></tr>
   </table>
   </dd>
 </dl>
@@ -335,7 +424,7 @@ Functions</h2></td></tr>
 <p>Start the network connection for a container. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">container_name</td><td>name of the container </td></tr>
+    <tr><td class="paramname">container_name</td><td>name of the container</td></tr>
   </table>
   </dd>
 </dl>
