@@ -107,6 +107,8 @@ int remove_container(const char *container_name)
     if (!container->stop(container))
     {
         fprintf(stderr, "Failed to stop the container: %s\n", container->error_string ? container->error_string : "unknown error");
+        snprintf(log_message, LOG_MESSAGE_SIZE, "ERROR LOG: Failed to stop container %s", container_name);
+        add_log_message(log_message, LOG_FILE_NAME);
         result = -1;
         goto out;
     }
@@ -120,6 +122,8 @@ int remove_container(const char *container_name)
     if (!container->destroy(container))
     {
         fprintf(stderr, "Failed to destroy the container: %s\n", container->error_string ? container->error_string : "unknown error");
+        snprintf(log_message, LOG_MESSAGE_SIZE, "ERROR LOG: Failed to destroy container %s", container_name);
+        add_log_message(log_message, LOG_FILE_NAME);
         result = -1;
         goto out;
     }
@@ -168,7 +172,7 @@ int list_containers(void)
         }
         else
         {
-            printf("IP: Not available\n");
+            printf("IP: N/A\n");
         }
     }
     printf("\n");
@@ -201,6 +205,8 @@ int start_connection(const char *container_name)
         if (!container->start(container, 0, NULL))
         {
             fprintf(stderr, "Failed to start the container: %s\n", container->error_string ? container->error_string : "unknown error");
+            snprintf(log_message, LOG_MESSAGE_SIZE, "ERROR LOG: Failed to start container %s", container_name);
+            add_log_message(log_message, LOG_FILE_NAME);
             result = -1;
             goto out;
         }
@@ -211,6 +217,8 @@ int start_connection(const char *container_name)
     if (container->console(container, ttynum, STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO, 1) < 0)
     {
         fprintf(stderr, "Failed to start connection: %s\n", container->error_string ? container->error_string : "unknown error");
+        snprintf(log_message, LOG_MESSAGE_SIZE, "ERROR LOG: Failed to start connection with container %s", container_name);
+        add_log_message(log_message, LOG_FILE_NAME);
         result = -1;
         goto out;
     }
@@ -243,6 +251,8 @@ int run_command_in_container(const char *container_name, char *command)
         if (!container->start(container, 0, NULL))
         {
             fprintf(stderr, "Failed to start the container: %s\n", container->error_string ? container->error_string : "unknown error");
+            snprintf(log_message, LOG_MESSAGE_SIZE, "ERROR LOG: Failed to start container %s", container_name);
+            add_log_message(log_message, LOG_FILE_NAME);
             result = -1;
             goto out;
         }
@@ -261,6 +271,8 @@ int run_command_in_container(const char *container_name, char *command)
     if (container->attach_run_wait(container, NULL, command, arguments) < 0) // Run the command
     {
         fprintf(stderr, "Failed to execute command: %s\n", container->error_string ? container->error_string : "unknown error");
+        snprintf(log_message, LOG_MESSAGE_SIZE, "ERROR LOG: Failed to execute command \"%s\" in container %s", command, container_name);
+        add_log_message(log_message, LOG_FILE_NAME);
         result = -1;
         goto out;
     }
@@ -281,7 +293,9 @@ int copy_file_to_container(const char *container_name, const char *file_name)
     struct lxc_container *container = lxc_container_new(container_name, NULL);
     if (container == NULL) // container does not exist
     {
-        fprintf(stderr, "Failed to setup lxc_container struct\n");
+        fprintf(stderr, "There's no container with the name %s\n", container_name);
+        snprintf(log_message, LOG_MESSAGE_SIZE, "ERROR LOG: Failed to copy file to container %s", container_name);
+        add_log_message(log_message, LOG_FILE_NAME);
         return -1;
     }
 
@@ -291,6 +305,8 @@ int copy_file_to_container(const char *container_name, const char *file_name)
     if (system(copy_command) < 0)
     {
         fprintf(stderr, "Failed to copy file\n");
+        snprintf(log_message, LOG_MESSAGE_SIZE, "ERROR LOG: Failed to copy file %s to container %s", file_name, container_name);
+        add_log_message(log_message, LOG_FILE_NAME);
         return -1;
     }
 
@@ -323,6 +339,8 @@ int define_limits_of_system_resources(const char *container_name, const char *cg
         if (!container->start(container, 0, NULL))
         {
             fprintf(stderr, "Failed to start the container: %s\n", container->error_string ? container->error_string : "unknown error");
+            snprintf(log_message, LOG_MESSAGE_SIZE, "ERROR LOG: Failed to start container %s", container_name);
+            add_log_message(log_message, LOG_FILE_NAME);
             result = -1;
             goto out;
         }
@@ -330,16 +348,17 @@ int define_limits_of_system_resources(const char *container_name, const char *cg
 
     printf("Defining limits of system resources (%s) for container %s\n", cgroup_subsystem, container_name);
 
-    snprintf(log_message, LOG_MESSAGE_SIZE, "INFO LOG: The resource %s of the container %s was defined with value '%s'", cgroup_subsystem, container_name, cgroup_value);
-    add_log_message(log_message, LOG_FILE_NAME);
-
-
     if (!container->set_cgroup_item(container, cgroup_subsystem, cgroup_value))
     {
         fprintf(stderr, "Failed to set cgroup: %s\n", container->error_string ? container->error_string : "unknown error");
+        snprintf(log_message, LOG_MESSAGE_SIZE, "ERROR LOG: Failed to define limits of system resources (%s) for container %s", cgroup_subsystem, container_name);
+        add_log_message(log_message, LOG_FILE_NAME);
         result = -1;
         goto out;
     }
+
+    snprintf(log_message, LOG_MESSAGE_SIZE, "INFO LOG: The resource %s of the container %s was defined with value '%s'", cgroup_subsystem, container_name, cgroup_value);
+    add_log_message(log_message, LOG_FILE_NAME);
 
 out:
     lxc_container_put(container);

@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['read_5finput_19',['read_input',['../main_8cpp.html#a5e2e8eeaaaf44a61521c5c9f57416284',1,'main.cpp']]],
-  ['remove_5fcontainer_20',['remove_container',['../lib_8cpp.html#a9908583fcfd0731f46829dac5a993ab1',1,'remove_container(const char *container_name):&#160;lib.cpp'],['../lib_8h.html#a9908583fcfd0731f46829dac5a993ab1',1,'remove_container(const char *container_name):&#160;lib.cpp']]],
-  ['run_5fapplication_5fin_5fcontainer_21',['run_application_in_container',['../lib_8cpp.html#a4187f527ceeccdf4c121a65c42de0860',1,'run_application_in_container(const char *container_name, const char *application):&#160;lib.cpp'],['../lib_8h.html#a4187f527ceeccdf4c121a65c42de0860',1,'run_application_in_container(const char *container_name, const char *application):&#160;lib.cpp']]],
-  ['run_5fcommand_5fin_5fcontainer_22',['run_command_in_container',['../lib_8cpp.html#ab4ddcb8c152ed53ae283726f3d2bc0db',1,'run_command_in_container(const char *container_name, char *command):&#160;lib.cpp'],['../lib_8h.html#ab4ddcb8c152ed53ae283726f3d2bc0db',1,'run_command_in_container(const char *container_name, char *command):&#160;lib.cpp']]]
+  ['show_5foptions_5fmenu_24',['show_options_menu',['../main_8cpp.html#a34ce9ce16a28b7cd6f6751994bbd2450',1,'main.cpp']]],
+  ['start_5fconnection_25',['start_connection',['../lib_8cpp.html#a511a969c07cd10291c1e44aaf9bb1dc2',1,'start_connection(const char *container_name):&#160;lib.cpp'],['../lib_8h.html#a511a969c07cd10291c1e44aaf9bb1dc2',1,'start_connection(const char *container_name):&#160;lib.cpp']]]
 ];

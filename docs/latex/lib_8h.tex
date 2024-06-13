@@ -1,5 +1,10 @@
 \hypertarget{lib_8h}{}\doxysection{src/lib/lib.h File Reference}
 \label{lib_8h}\index{src/lib/lib.h@{src/lib/lib.h}}
+
+
+This file contains the definitions of the functions used in lib.\+c regarding LXC containers operations.  
+
+
 This graph shows which files directly or indirectly include this file\+:
 % FIG 0
 \doxysubsection*{Functions}
@@ -10,19 +15,30 @@ int \mbox{\hyperlink{lib_8h_a33616ca79a4736c394b1388f4ed5d23b}{create\+\_\+new\+
 int \mbox{\hyperlink{lib_8h_a9908583fcfd0731f46829dac5a993ab1}{remove\+\_\+container}} (const char $\ast$container\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Remove an existing LXC container object. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8h_a5fcc6feeff3a69139243f237a9a5293d}{list\+\_\+containers}} (void)
-\begin{DoxyCompactList}\small\item\em List all the containers. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{lib_8h_aa09a1ab23c0a1fa6619c486527c88d4e}{start\+\_\+network\+\_\+connection}} (const char $\ast$container\+\_\+name)
-\begin{DoxyCompactList}\small\item\em Start the network connection for a container. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em List all the active LXC containers. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{lib_8h_a511a969c07cd10291c1e44aaf9bb1dc2}{start\+\_\+connection}} (const char $\ast$container\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Connect to the shell of a given LXC container. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8h_ab4ddcb8c152ed53ae283726f3d2bc0db}{run\+\_\+command\+\_\+in\+\_\+container}} (const char $\ast$container\+\_\+name, char $\ast$command)
-\begin{DoxyCompactList}\small\item\em Run a command in a container. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{lib_8h_a4187f527ceeccdf4c121a65c42de0860}{run\+\_\+application\+\_\+in\+\_\+container}} (const char $\ast$container\+\_\+name, const char $\ast$application)
-\begin{DoxyCompactList}\small\item\em Run an application in a container. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Run a shell command in a LXC container. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8h_ad27ecf4327174946f44264327700ddcd}{copy\+\_\+file\+\_\+to\+\_\+container}} (const char $\ast$container\+\_\+name, const char $\ast$file\+\_\+name)
-\begin{DoxyCompactList}\small\item\em Copy a file to a container. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Copy a file to a LXC container home directory. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8h_abd962a2b6ca5d3bd24d35f681e57eac8}{define\+\_\+limits\+\_\+of\+\_\+system\+\_\+resources}} (const char $\ast$container\+\_\+name, const char $\ast$cgroup\+\_\+subsystem, const char $\ast$cgroup\+\_\+value)
-\begin{DoxyCompactList}\small\item\em Define limits of system resources for a container. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Define limits of system resources for a LXC container by setting cgroup values. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8h_a936f1b8bc4c41d13df878cba833afba0}{check\+\_\+limits\+\_\+of\+\_\+system\+\_\+resources}} (const char $\ast$container\+\_\+name, const char $\ast$cgroup\+\_\+subsystem)
-\begin{DoxyCompactList}\small\item\em Get the limits defined of a given cgroup subsystem. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get the limits of system resources for a LXC container by showing the current cgroup values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the definitions of the functions used in lib.\+c regarding LXC containers operations. 
+
+This file contains the definitions of the functions used in lib.\+c The functions are used to create, remove, list, start, run commands, run applications, copy files, define limits and check limits of system resources on these containers
+
+\begin{DoxyAuthor}{Author}
+Simão Andrade 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2024-\/06-\/13 
+\end{DoxyDate}
 
 
 \doxysubsection{Function Documentation}
@@ -34,7 +50,7 @@ int \mbox{\hyperlink{lib_8h_a936f1b8bc4c41d13df878cba833afba0}{check\+\_\+limits
 
 
 
-Get the limits defined of a given cgroup subsystem. 
+Get the limits of system resources for a LXC container by showing the current cgroup values. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -54,7 +70,7 @@ int 0 on success, -\/1 on failure
 
 
 
-Copy a file to a container. 
+Copy a file to a LXC container home directory. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -92,7 +108,7 @@ int 0 on success, -\/1 on failure
 
 
 
-Define limits of system resources for a container. 
+Define limits of system resources for a LXC container by setting cgroup values. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -114,7 +130,7 @@ int 0 on success, -\/1 on failure
 
 
 
-List all the containers. 
+List all the active LXC containers. 
 
 \begin{DoxyReturn}{Returns}
 int 0 on success, -\/1 on failure 
@@ -137,26 +153,6 @@ Remove an existing LXC container object.
 \begin{DoxyReturn}{Returns}
 int 0 on success, -\/1 on failure 
 \end{DoxyReturn}
-\mbox{\Hypertarget{lib_8h_a4187f527ceeccdf4c121a65c42de0860}\label{lib_8h_a4187f527ceeccdf4c121a65c42de0860}} 
-\index{lib.h@{lib.h}!run\_application\_in\_container@{run\_application\_in\_container}}
-\index{run\_application\_in\_container@{run\_application\_in\_container}!lib.h@{lib.h}}
-\doxysubsubsection{\texorpdfstring{run\_application\_in\_container()}{run\_application\_in\_container()}}
-{\footnotesize\ttfamily int run\+\_\+application\+\_\+in\+\_\+container (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name,  }\item[{const char $\ast$}]{application }\end{DoxyParamCaption})}
-
-
-
-Run an application in a container. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em container\+\_\+name} & name of the container \\
-\hline
-{\em application} & application to execute\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-int 0 on success, -\/1 on failure 
-\end{DoxyReturn}
 \mbox{\Hypertarget{lib_8h_ab4ddcb8c152ed53ae283726f3d2bc0db}\label{lib_8h_ab4ddcb8c152ed53ae283726f3d2bc0db}} 
 \index{lib.h@{lib.h}!run\_command\_in\_container@{run\_command\_in\_container}}
 \index{run\_command\_in\_container@{run\_command\_in\_container}!lib.h@{lib.h}}
@@ -165,13 +161,13 @@ int 0 on success, -\/1 on failure
 
 
 
-Run a command in a container. 
+Run a shell command in a LXC container. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em container\+\_\+name} & name of the container \\
 \hline
-{\em command} & command to execute \\
+{\em command} & shell command to execute \\
 \hline
 {\em command\+\_\+length} & length of the command\\
 \hline
@@ -179,15 +175,15 @@ Run a command in a container.
 \begin{DoxyReturn}{Returns}
 int 0 on success, -\/1 on failure 
 \end{DoxyReturn}
-\mbox{\Hypertarget{lib_8h_aa09a1ab23c0a1fa6619c486527c88d4e}\label{lib_8h_aa09a1ab23c0a1fa6619c486527c88d4e}} 
-\index{lib.h@{lib.h}!start\_network\_connection@{start\_network\_connection}}
-\index{start\_network\_connection@{start\_network\_connection}!lib.h@{lib.h}}
-\doxysubsubsection{\texorpdfstring{start\_network\_connection()}{start\_network\_connection()}}
-{\footnotesize\ttfamily int start\+\_\+network\+\_\+connection (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{lib_8h_a511a969c07cd10291c1e44aaf9bb1dc2}\label{lib_8h_a511a969c07cd10291c1e44aaf9bb1dc2}} 
+\index{lib.h@{lib.h}!start\_connection@{start\_connection}}
+\index{start\_connection@{start\_connection}!lib.h@{lib.h}}
+\doxysubsubsection{\texorpdfstring{start\_connection()}{start\_connection()}}
+{\footnotesize\ttfamily int start\+\_\+connection (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name }\end{DoxyParamCaption})}
 
 
 
-Start the network connection for a container. 
+Connect to the shell of a given LXC container. 
 
 
 \begin{DoxyParams}{Parameters}

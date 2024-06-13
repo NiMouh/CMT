@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['filename_5fbuffer_5fsize_47',['FILENAME_BUFFER_SIZE',['../main_8cpp.html#a8582aa6637e4bfd8770ca7385a2babb5',1,'main.cpp']]]
+  ['log_5ffile_5fname_49',['LOG_FILE_NAME',['../lib_8cpp.html#a6f6e0a7a87048fb100a02f5c9d8660d6',1,'lib.cpp']]],
+  ['log_5fmessage_5fsize_50',['LOG_MESSAGE_SIZE',['../lib_8cpp.html#aeae4c8d790dccae400913b26a526c774',1,'lib.cpp']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['list_5fcontainers_33',['list_containers',['../lib_8cpp.html#a5fcc6feeff3a69139243f237a9a5293d',1,'list_containers(void):&#160;lib.cpp'],['../lib_8h.html#a5fcc6feeff3a69139243f237a9a5293d',1,'list_containers(void):&#160;lib.cpp']]]
+  ['define_5flimits_5fof_5fsystem_5fresources_35',['define_limits_of_system_resources',['../lib_8cpp.html#abd962a2b6ca5d3bd24d35f681e57eac8',1,'define_limits_of_system_resources(const char *container_name, const char *cgroup_subsystem, const char *cgroup_value):&#160;lib.cpp'],['../lib_8h.html#abd962a2b6ca5d3bd24d35f681e57eac8',1,'define_limits_of_system_resources(const char *container_name, const char *cgroup_subsystem, const char *cgroup_value):&#160;lib.cpp']]]
 ];

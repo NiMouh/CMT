@@ -1,8 +1,14 @@
 \hypertarget{main_8cpp}{}\doxysection{src/main.cpp File Reference}
 \label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+
+
+Main program that provides a menu to interact with the Container Manager.  
+
+
 {\ttfamily \#include \char`\"{}lib/lib.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
 Include dependency graph for main.\+cpp\+:
 % FIG 0
 \doxysubsection*{Macros}
@@ -14,13 +20,7 @@ Include dependency graph for main.\+cpp\+:
 \item 
 \#define \mbox{\hyperlink{main_8cpp_acf5b4949b2bcaa055cc03fa33274f6d9}{COMMAND\+\_\+\+BUFFER\+\_\+\+SIZE}}~1024
 \item 
-\#define \mbox{\hyperlink{main_8cpp_ae200352add61f796bc8eef64ceb65b0c}{CGROUP\+\_\+\+SUBSYSTEM\+\_\+\+BUFFER\+\_\+\+SIZE}}~100
-\item 
-\#define \mbox{\hyperlink{main_8cpp_a03014ca392fa104201cc103160a8148e}{CGROUP\+\_\+\+LIMITS\+\_\+\+BUFFER\+\_\+\+SIZE}}~100
-\item 
-\#define \mbox{\hyperlink{main_8cpp_a4979fa449090ea6181c2f0a91fe512e7}{NETWORK\+\_\+\+BUFFER\+\_\+\+SIZE}}~100
-\item 
-\#define \mbox{\hyperlink{main_8cpp_ac30b935d818ef8f5066e7de27d56ccb1}{APPLICATION\+\_\+\+NAME\+\_\+\+BUFFER\+\_\+\+SIZE}}~100
+\#define \mbox{\hyperlink{main_8cpp_a03014ca392fa104201cc103160a8148e}{CGROUP\+\_\+\+LIMITS\+\_\+\+BUFFER\+\_\+\+SIZE}}~10
 \item 
 \#define \mbox{\hyperlink{main_8cpp_a8582aa6637e4bfd8770ca7385a2babb5}{FILENAME\+\_\+\+BUFFER\+\_\+\+SIZE}}~100
 \end{DoxyCompactItemize}
@@ -28,6 +28,8 @@ Include dependency graph for main.\+cpp\+:
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{main_8cpp_abc40cd622f423abf44084c8f8595f57f}{clear\+\_\+screen}} (void)
+\item 
+void \mbox{\hyperlink{main_8cpp_a406defd61bbe2707306f1d68b6f3bb08}{clear\+\_\+input\+\_\+buffer}} (void)
 \item 
 int \mbox{\hyperlink{main_8cpp_a34ce9ce16a28b7cd6f6751994bbd2450}{show\+\_\+options\+\_\+menu}} (void)
 \item 
@@ -37,24 +39,27 @@ int \mbox{\hyperlink{main_8cpp_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Macro Definition Documentation}
-\mbox{\Hypertarget{main_8cpp_ac30b935d818ef8f5066e7de27d56ccb1}\label{main_8cpp_ac30b935d818ef8f5066e7de27d56ccb1}} 
-\index{main.cpp@{main.cpp}!APPLICATION\_NAME\_BUFFER\_SIZE@{APPLICATION\_NAME\_BUFFER\_SIZE}}
-\index{APPLICATION\_NAME\_BUFFER\_SIZE@{APPLICATION\_NAME\_BUFFER\_SIZE}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{APPLICATION\_NAME\_BUFFER\_SIZE}{APPLICATION\_NAME\_BUFFER\_SIZE}}
-{\footnotesize\ttfamily \#define APPLICATION\+\_\+\+NAME\+\_\+\+BUFFER\+\_\+\+SIZE~100}
+\doxysubsection{Detailed Description}
+Main program that provides a menu to interact with the Container Manager. 
 
+This program provides a menu to interact with the Container Manager. The user can add a new Container, remove a Container, list all Containers, execute a command in a Container, define limits of system resources, check limits of system resources, establish a network connection with a Container, execute an application in a Container, copy a file to a Container, and exit the program.
+
+The program uses the functions from the Container Manager library to interact with the Containers.
+
+\begin{DoxyAuthor}{Author}
+Simão Andrade 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2024-\/06-\/13 
+\end{DoxyDate}
+
+
+\doxysubsection{Macro Definition Documentation}
 \mbox{\Hypertarget{main_8cpp_a03014ca392fa104201cc103160a8148e}\label{main_8cpp_a03014ca392fa104201cc103160a8148e}} 
 \index{main.cpp@{main.cpp}!CGROUP\_LIMITS\_BUFFER\_SIZE@{CGROUP\_LIMITS\_BUFFER\_SIZE}}
 \index{CGROUP\_LIMITS\_BUFFER\_SIZE@{CGROUP\_LIMITS\_BUFFER\_SIZE}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{CGROUP\_LIMITS\_BUFFER\_SIZE}{CGROUP\_LIMITS\_BUFFER\_SIZE}}
-{\footnotesize\ttfamily \#define CGROUP\+\_\+\+LIMITS\+\_\+\+BUFFER\+\_\+\+SIZE~100}
-
-\mbox{\Hypertarget{main_8cpp_ae200352add61f796bc8eef64ceb65b0c}\label{main_8cpp_ae200352add61f796bc8eef64ceb65b0c}} 
-\index{main.cpp@{main.cpp}!CGROUP\_SUBSYSTEM\_BUFFER\_SIZE@{CGROUP\_SUBSYSTEM\_BUFFER\_SIZE}}
-\index{CGROUP\_SUBSYSTEM\_BUFFER\_SIZE@{CGROUP\_SUBSYSTEM\_BUFFER\_SIZE}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{CGROUP\_SUBSYSTEM\_BUFFER\_SIZE}{CGROUP\_SUBSYSTEM\_BUFFER\_SIZE}}
-{\footnotesize\ttfamily \#define CGROUP\+\_\+\+SUBSYSTEM\+\_\+\+BUFFER\+\_\+\+SIZE~100}
+{\footnotesize\ttfamily \#define CGROUP\+\_\+\+LIMITS\+\_\+\+BUFFER\+\_\+\+SIZE~10}
 
 \mbox{\Hypertarget{main_8cpp_acf5b4949b2bcaa055cc03fa33274f6d9}\label{main_8cpp_acf5b4949b2bcaa055cc03fa33274f6d9}} 
 \index{main.cpp@{main.cpp}!COMMAND\_BUFFER\_SIZE@{COMMAND\_BUFFER\_SIZE}}
@@ -80,15 +85,15 @@ int \mbox{\hyperlink{main_8cpp_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
 \doxysubsubsection{\texorpdfstring{FILENAME\_BUFFER\_SIZE}{FILENAME\_BUFFER\_SIZE}}
 {\footnotesize\ttfamily \#define FILENAME\+\_\+\+BUFFER\+\_\+\+SIZE~100}
 
-\mbox{\Hypertarget{main_8cpp_a4979fa449090ea6181c2f0a91fe512e7}\label{main_8cpp_a4979fa449090ea6181c2f0a91fe512e7}} 
-\index{main.cpp@{main.cpp}!NETWORK\_BUFFER\_SIZE@{NETWORK\_BUFFER\_SIZE}}
-\index{NETWORK\_BUFFER\_SIZE@{NETWORK\_BUFFER\_SIZE}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{NETWORK\_BUFFER\_SIZE}{NETWORK\_BUFFER\_SIZE}}
-{\footnotesize\ttfamily \#define NETWORK\+\_\+\+BUFFER\+\_\+\+SIZE~100}
-
 
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8cpp_a406defd61bbe2707306f1d68b6f3bb08}\label{main_8cpp_a406defd61bbe2707306f1d68b6f3bb08}} 
+\index{main.cpp@{main.cpp}!clear\_input\_buffer@{clear\_input\_buffer}}
+\index{clear\_input\_buffer@{clear\_input\_buffer}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{clear\_input\_buffer()}{clear\_input\_buffer()}}
+{\footnotesize\ttfamily void clear\+\_\+input\+\_\+buffer (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
 \mbox{\Hypertarget{main_8cpp_abc40cd622f423abf44084c8f8595f57f}\label{main_8cpp_abc40cd622f423abf44084c8f8595f57f}} 
 \index{main.cpp@{main.cpp}!clear\_screen@{clear\_screen}}
 \index{clear\_screen@{clear\_screen}!main.cpp@{main.cpp}}

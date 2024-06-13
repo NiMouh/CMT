@@ -1,48 +1,80 @@
 \hypertarget{lib_8cpp}{}\doxysection{src/lib/lib.cpp File Reference}
 \label{lib_8cpp}\index{src/lib/lib.cpp@{src/lib/lib.cpp}}
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
-{\ttfamily \#include $<$lxc/lxccontainer.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$lxc/lxccontainer.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
 Include dependency graph for lib.\+cpp\+:
 % FIG 0
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{lib_8cpp_a29b7451465deac204c5f7cb1f9c6e1fc}{MAX\+\_\+\+ARGS}}~100
+\#define \mbox{\hyperlink{lib_8cpp_a0ad0666a1726541270e5b2a3594f242c}{MAX\+\_\+\+COMMAND\+\_\+\+ARGS}}~100
+\item 
+\#define \mbox{\hyperlink{lib_8cpp_aeae4c8d790dccae400913b26a526c774}{LOG\+\_\+\+MESSAGE\+\_\+\+SIZE}}~100
+\item 
+\#define \mbox{\hyperlink{lib_8cpp_a6f6e0a7a87048fb100a02f5c9d8660d6}{LOG\+\_\+\+FILE\+\_\+\+NAME}}~\char`\"{}log.\+txt\char`\"{}
+\item 
+\#define \mbox{\hyperlink{lib_8cpp_a41c8cf4919dfaf8ff523ff7a3150ff57}{CGROUP\+\_\+\+VALUE\+\_\+\+BUFFER\+\_\+\+SIZE}}~50
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{lib_8cpp_a9e56d89f27b8246e395f9ee880cb91db}{add\+\_\+log\+\_\+message}} (const char $\ast$message, const char $\ast$file\+\_\+name)
 \item 
 int \mbox{\hyperlink{lib_8cpp_a33616ca79a4736c394b1388f4ed5d23b}{create\+\_\+new\+\_\+container}} (const char $\ast$container\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Create a new LXC container object. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8cpp_a9908583fcfd0731f46829dac5a993ab1}{remove\+\_\+container}} (const char $\ast$container\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Remove an existing LXC container object. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8cpp_a5fcc6feeff3a69139243f237a9a5293d}{list\+\_\+containers}} (void)
-\begin{DoxyCompactList}\small\item\em List all the containers. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{lib_8cpp_aa09a1ab23c0a1fa6619c486527c88d4e}{start\+\_\+network\+\_\+connection}} (const char $\ast$container\+\_\+name)
-\begin{DoxyCompactList}\small\item\em Start the network connection for a container. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em List all the active LXC containers. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{lib_8cpp_a511a969c07cd10291c1e44aaf9bb1dc2}{start\+\_\+connection}} (const char $\ast$container\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Connect to the shell of a given LXC container. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8cpp_ab4ddcb8c152ed53ae283726f3d2bc0db}{run\+\_\+command\+\_\+in\+\_\+container}} (const char $\ast$container\+\_\+name, char $\ast$command)
-\begin{DoxyCompactList}\small\item\em Run a command in a container. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{lib_8cpp_a4187f527ceeccdf4c121a65c42de0860}{run\+\_\+application\+\_\+in\+\_\+container}} (const char $\ast$container\+\_\+name, const char $\ast$application)
-\begin{DoxyCompactList}\small\item\em Run an application in a container. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Run a shell command in a LXC container. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8cpp_ad27ecf4327174946f44264327700ddcd}{copy\+\_\+file\+\_\+to\+\_\+container}} (const char $\ast$container\+\_\+name, const char $\ast$file\+\_\+name)
-\begin{DoxyCompactList}\small\item\em Copy a file to a container. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Copy a file to a LXC container home directory. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8cpp_abd962a2b6ca5d3bd24d35f681e57eac8}{define\+\_\+limits\+\_\+of\+\_\+system\+\_\+resources}} (const char $\ast$container\+\_\+name, const char $\ast$cgroup\+\_\+subsystem, const char $\ast$cgroup\+\_\+value)
-\begin{DoxyCompactList}\small\item\em Define limits of system resources for a container. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Define limits of system resources for a LXC container by setting cgroup values. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{lib_8cpp_a936f1b8bc4c41d13df878cba833afba0}{check\+\_\+limits\+\_\+of\+\_\+system\+\_\+resources}} (const char $\ast$container\+\_\+name, const char $\ast$cgroup\+\_\+subsystem)
-\begin{DoxyCompactList}\small\item\em Get the limits defined of a given cgroup subsystem. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get the limits of system resources for a LXC container by showing the current cgroup values. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Macro Definition Documentation}
-\mbox{\Hypertarget{lib_8cpp_a29b7451465deac204c5f7cb1f9c6e1fc}\label{lib_8cpp_a29b7451465deac204c5f7cb1f9c6e1fc}} 
-\index{lib.cpp@{lib.cpp}!MAX\_ARGS@{MAX\_ARGS}}
-\index{MAX\_ARGS@{MAX\_ARGS}!lib.cpp@{lib.cpp}}
-\doxysubsubsection{\texorpdfstring{MAX\_ARGS}{MAX\_ARGS}}
-{\footnotesize\ttfamily \#define MAX\+\_\+\+ARGS~100}
+\mbox{\Hypertarget{lib_8cpp_a41c8cf4919dfaf8ff523ff7a3150ff57}\label{lib_8cpp_a41c8cf4919dfaf8ff523ff7a3150ff57}} 
+\index{lib.cpp@{lib.cpp}!CGROUP\_VALUE\_BUFFER\_SIZE@{CGROUP\_VALUE\_BUFFER\_SIZE}}
+\index{CGROUP\_VALUE\_BUFFER\_SIZE@{CGROUP\_VALUE\_BUFFER\_SIZE}!lib.cpp@{lib.cpp}}
+\doxysubsubsection{\texorpdfstring{CGROUP\_VALUE\_BUFFER\_SIZE}{CGROUP\_VALUE\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define CGROUP\+\_\+\+VALUE\+\_\+\+BUFFER\+\_\+\+SIZE~50}
+
+\mbox{\Hypertarget{lib_8cpp_a6f6e0a7a87048fb100a02f5c9d8660d6}\label{lib_8cpp_a6f6e0a7a87048fb100a02f5c9d8660d6}} 
+\index{lib.cpp@{lib.cpp}!LOG\_FILE\_NAME@{LOG\_FILE\_NAME}}
+\index{LOG\_FILE\_NAME@{LOG\_FILE\_NAME}!lib.cpp@{lib.cpp}}
+\doxysubsubsection{\texorpdfstring{LOG\_FILE\_NAME}{LOG\_FILE\_NAME}}
+{\footnotesize\ttfamily \#define LOG\+\_\+\+FILE\+\_\+\+NAME~\char`\"{}log.\+txt\char`\"{}}
+
+\mbox{\Hypertarget{lib_8cpp_aeae4c8d790dccae400913b26a526c774}\label{lib_8cpp_aeae4c8d790dccae400913b26a526c774}} 
+\index{lib.cpp@{lib.cpp}!LOG\_MESSAGE\_SIZE@{LOG\_MESSAGE\_SIZE}}
+\index{LOG\_MESSAGE\_SIZE@{LOG\_MESSAGE\_SIZE}!lib.cpp@{lib.cpp}}
+\doxysubsubsection{\texorpdfstring{LOG\_MESSAGE\_SIZE}{LOG\_MESSAGE\_SIZE}}
+{\footnotesize\ttfamily \#define LOG\+\_\+\+MESSAGE\+\_\+\+SIZE~100}
+
+\mbox{\Hypertarget{lib_8cpp_a0ad0666a1726541270e5b2a3594f242c}\label{lib_8cpp_a0ad0666a1726541270e5b2a3594f242c}} 
+\index{lib.cpp@{lib.cpp}!MAX\_COMMAND\_ARGS@{MAX\_COMMAND\_ARGS}}
+\index{MAX\_COMMAND\_ARGS@{MAX\_COMMAND\_ARGS}!lib.cpp@{lib.cpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_COMMAND\_ARGS}{MAX\_COMMAND\_ARGS}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+COMMAND\+\_\+\+ARGS~100}
 
 
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{lib_8cpp_a9e56d89f27b8246e395f9ee880cb91db}\label{lib_8cpp_a9e56d89f27b8246e395f9ee880cb91db}} 
+\index{lib.cpp@{lib.cpp}!add\_log\_message@{add\_log\_message}}
+\index{add\_log\_message@{add\_log\_message}!lib.cpp@{lib.cpp}}
+\doxysubsubsection{\texorpdfstring{add\_log\_message()}{add\_log\_message()}}
+{\footnotesize\ttfamily int add\+\_\+log\+\_\+message (\begin{DoxyParamCaption}\item[{const char $\ast$}]{message,  }\item[{const char $\ast$}]{file\+\_\+name }\end{DoxyParamCaption})}
+
 \mbox{\Hypertarget{lib_8cpp_a936f1b8bc4c41d13df878cba833afba0}\label{lib_8cpp_a936f1b8bc4c41d13df878cba833afba0}} 
 \index{lib.cpp@{lib.cpp}!check\_limits\_of\_system\_resources@{check\_limits\_of\_system\_resources}}
 \index{check\_limits\_of\_system\_resources@{check\_limits\_of\_system\_resources}!lib.cpp@{lib.cpp}}
@@ -51,7 +83,7 @@ int \mbox{\hyperlink{lib_8cpp_a936f1b8bc4c41d13df878cba833afba0}{check\+\_\+limi
 
 
 
-Get the limits defined of a given cgroup subsystem. 
+Get the limits of system resources for a LXC container by showing the current cgroup values. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -71,7 +103,7 @@ int 0 on success, -\/1 on failure
 
 
 
-Copy a file to a container. 
+Copy a file to a LXC container home directory. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -109,7 +141,7 @@ int 0 on success, -\/1 on failure
 
 
 
-Define limits of system resources for a container. 
+Define limits of system resources for a LXC container by setting cgroup values. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -131,7 +163,7 @@ int 0 on success, -\/1 on failure
 
 
 
-List all the containers. 
+List all the active LXC containers. 
 
 \begin{DoxyReturn}{Returns}
 int 0 on success, -\/1 on failure 
@@ -154,26 +186,6 @@ Remove an existing LXC container object.
 \begin{DoxyReturn}{Returns}
 int 0 on success, -\/1 on failure 
 \end{DoxyReturn}
-\mbox{\Hypertarget{lib_8cpp_a4187f527ceeccdf4c121a65c42de0860}\label{lib_8cpp_a4187f527ceeccdf4c121a65c42de0860}} 
-\index{lib.cpp@{lib.cpp}!run\_application\_in\_container@{run\_application\_in\_container}}
-\index{run\_application\_in\_container@{run\_application\_in\_container}!lib.cpp@{lib.cpp}}
-\doxysubsubsection{\texorpdfstring{run\_application\_in\_container()}{run\_application\_in\_container()}}
-{\footnotesize\ttfamily int run\+\_\+application\+\_\+in\+\_\+container (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name,  }\item[{const char $\ast$}]{application }\end{DoxyParamCaption})}
-
-
-
-Run an application in a container. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em container\+\_\+name} & name of the container \\
-\hline
-{\em application} & application to execute\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-int 0 on success, -\/1 on failure 
-\end{DoxyReturn}
 \mbox{\Hypertarget{lib_8cpp_ab4ddcb8c152ed53ae283726f3d2bc0db}\label{lib_8cpp_ab4ddcb8c152ed53ae283726f3d2bc0db}} 
 \index{lib.cpp@{lib.cpp}!run\_command\_in\_container@{run\_command\_in\_container}}
 \index{run\_command\_in\_container@{run\_command\_in\_container}!lib.cpp@{lib.cpp}}
@@ -182,13 +194,13 @@ int 0 on success, -\/1 on failure
 
 
 
-Run a command in a container. 
+Run a shell command in a LXC container. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em container\+\_\+name} & name of the container \\
 \hline
-{\em command} & command to execute \\
+{\em command} & shell command to execute \\
 \hline
 {\em command\+\_\+length} & length of the command\\
 \hline
@@ -196,15 +208,15 @@ Run a command in a container.
 \begin{DoxyReturn}{Returns}
 int 0 on success, -\/1 on failure 
 \end{DoxyReturn}
-\mbox{\Hypertarget{lib_8cpp_aa09a1ab23c0a1fa6619c486527c88d4e}\label{lib_8cpp_aa09a1ab23c0a1fa6619c486527c88d4e}} 
-\index{lib.cpp@{lib.cpp}!start\_network\_connection@{start\_network\_connection}}
-\index{start\_network\_connection@{start\_network\_connection}!lib.cpp@{lib.cpp}}
-\doxysubsubsection{\texorpdfstring{start\_network\_connection()}{start\_network\_connection()}}
-{\footnotesize\ttfamily int start\+\_\+network\+\_\+connection (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{lib_8cpp_a511a969c07cd10291c1e44aaf9bb1dc2}\label{lib_8cpp_a511a969c07cd10291c1e44aaf9bb1dc2}} 
+\index{lib.cpp@{lib.cpp}!start\_connection@{start\_connection}}
+\index{start\_connection@{start\_connection}!lib.cpp@{lib.cpp}}
+\doxysubsubsection{\texorpdfstring{start\_connection()}{start\_connection()}}
+{\footnotesize\ttfamily int start\+\_\+connection (\begin{DoxyParamCaption}\item[{const char $\ast$}]{container\+\_\+name }\end{DoxyParamCaption})}
 
 
 
-Start the network connection for a container. 
+Connect to the shell of a given LXC container. 
 
 
 \begin{DoxyParams}{Parameters}

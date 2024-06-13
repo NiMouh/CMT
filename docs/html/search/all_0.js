@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['application_5fname_5fbuffer_5fsize_0',['APPLICATION_NAME_BUFFER_SIZE',['../main_8cpp.html#ac30b935d818ef8f5066e7de27d56ccb1',1,'main.cpp']]]
+  ['add_5flog_5fmessage_0',['add_log_message',['../lib_8cpp.html#a9e56d89f27b8246e395f9ee880cb91db',1,'lib.cpp']]]
 ];

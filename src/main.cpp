@@ -25,9 +25,6 @@
 #define CGROUP_LIMITS_BUFFER_SIZE 10
 
 // 8.
-#define APPLICATION_NAME_BUFFER_SIZE 100
-
-// 9.
 #define FILENAME_BUFFER_SIZE 100
 
 void clear_screen(void)
