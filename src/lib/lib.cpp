@@ -9,6 +9,8 @@
 #define LOG_MESSAGE_SIZE 100
 #define LOG_FILE_NAME "log.txt"
 
+#define CGROUP_VALUE_BUFFER_SIZE 50
+
 int add_log_message(const char *message, const char *file_name)
 {
     FILE *file = fopen(file_name, "a");
@@ -174,7 +176,7 @@ out:
 int start_connection(const char *container_name)
 {
     struct lxc_container *container;
-    int result = 0, ttynum = -1; // allocate the first available tty 
+    int result = 0, ttynum = -1; // allocate the first available tty
     char log_message[LOG_MESSAGE_SIZE] = {0};
 
     container = lxc_container_new(container_name, NULL);
@@ -275,9 +277,10 @@ int copy_file_to_container(const char *container_name, const char *file_name) //
     return 0;
 }
 
-int define_limits_of_system_resources(const char *container_name, const char *cgroup_subsystem, const char *cgroup_value) // FIXME: Cgroup value is not being set
+int define_limits_of_system_resources(const char *container_name, const char *cgroup_subsystem, const char *cgroup_value)
 {
     struct lxc_container *container;
+    char log_message[LOG_MESSAGE_SIZE] = {0};
     int result = 0;
 
     container = lxc_container_new(container_name, NULL);
@@ -299,7 +302,11 @@ int define_limits_of_system_resources(const char *container_name, const char *cg
         }
     }
 
-    printf("Defining limits of system resources for container %s\n", container_name);
+    printf("Defining limits of system resources (%s) for container %s\n", cgroup_subsystem, container_name);
+
+    snprintf(log_message, LOG_MESSAGE_SIZE, "INFO LOG: The resource %s of the container %s was defined with value '%s'", cgroup_subsystem, container_name, cgroup_value);
+    add_log_message(log_message, LOG_FILE_NAME);
+
 
     if (!container->set_cgroup_item(container, cgroup_subsystem, cgroup_value))
     {
@@ -313,11 +320,11 @@ out:
     return result;
 }
 
-int check_limits_of_system_resources(const char *container_name, const char *cgroup_subsystem) // FIXME: Cgroup value is not being retrieved
+int check_limits_of_system_resources(const char *container_name, const char *cgroup_subsystem)
 {
     struct lxc_container *container;
-    int result = 0;
-    char *cgroup_value = NULL;
+    int result = 0, container_pid = -1;
+    char cgroup_value[CGROUP_VALUE_BUFFER_SIZE] = {0};
 
     container = lxc_container_new(container_name, NULL);
     if (container == NULL)
@@ -327,7 +334,7 @@ int check_limits_of_system_resources(const char *container_name, const char *cgr
         goto out;
     }
 
-    if (!container->is_running(container)) // not running
+    if (!container->is_running(container))
     {
         printf("Starting the container\n\n");
         if (!container->start(container, 0, NULL))
@@ -338,17 +345,24 @@ int check_limits_of_system_resources(const char *container_name, const char *cgr
         }
     }
 
-    printf("Checking limits of system resources (%s) for container %s\n", cgroup_subsystem, container_name);
+    container_pid = container->init_pid(container);
+    if (container_pid < 0)
+    {
+        fprintf(stderr, "Failed to get the PID of the container: %s\n", container->error_string ? container->error_string : "unknown error");
+        result = -1;
+        goto out;
+    }
 
-    if (container->get_cgroup_item(container, cgroup_subsystem, cgroup_value, 0) < 0)
+    printf("Checking limits of system resources (%s) for container %s\n with PID %d\n", cgroup_subsystem, container_name, container_pid);
+
+    if (!container->get_cgroup_item(container, cgroup_subsystem, cgroup_value, sizeof(cgroup_value)))
     {
         fprintf(stderr, "Failed to get cgroup: %s\n", container->error_string ? container->error_string : "unknown error");
         result = -1;
         goto out;
     }
 
-    printf("The limit defined in the cgroup subsystem %s is %s\n", cgroup_subsystem, cgroup_value);
-    free(cgroup_value);
+    printf("Resource Value: %s\n", cgroup_value);
 
 out:
     lxc_container_put(container);

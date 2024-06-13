@@ -19,7 +19,7 @@ O programa deve ser capaz de:
 - [x] Criar/Remover *containers*;
 - [x] Executar comandos num *container* (e.g. listar ficheiros) e visualizar o output;
 - [x] Listar *containers* em execução;
-- [ ] Definir limites de recursos para um *container* (e.g. CPU, memória);
+- [x] Definir limites de recursos para um *container* (e.g. CPU, memória);
 - [ ] Copiar ficheiros para dentro de um *container*;
 - [x] Estabelecer uma ligação com o *container*;
 - [ ] Executar aplicações num *container*.
@@ -27,7 +27,7 @@ O programa deve ser capaz de:
 Extras:
 
 - [x] Criação de *logs* de atividade.
-- [ ] Dinamicamente alterar os limites de recursos de um *container*;
+- [x] Dinamicamente alterar os limites de recursos de um *container*;
 
 ## Implementação
 
@@ -95,7 +95,6 @@ Lista todos os *containers* em execução, mostrando o *PID* e o nome de cada *c
 #### Execução de comandos num *container*
 
 Para executar comandos num *container*, é chamada a seguinte função:
-
 ```cpp
 int run_command_in_container(const char *container_name, char *command);
 ```
@@ -156,10 +155,11 @@ make
 
 ## Conclusão
 
-Em suma, bla bla bla...
+O projeto foi desenvolvido com sucesso, conseguindo implementar as funcionalidades propostas.
 
 ## Referências
 
 - [LXC (Linux Container)](https://linuxcontainers.org/lxc/documentation/)
 - [CGroups](https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt)
+- [Limiting Resources using CGroups](https://apptainer.org/docs/user/1.0/cgroups.html)
 - [Chroot](https://man7.org/linux/man-pages/man1/chroot.1.html)
