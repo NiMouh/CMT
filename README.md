@@ -20,9 +20,9 @@ O programa deve ser capaz de:
 - [x] Executar comandos num *container* (e.g. listar ficheiros) e visualizar o output;
 - [x] Listar *containers* em execução;
 - [x] Definir limites de recursos para um *container* (e.g. CPU, memória);
-- [ ] Copiar ficheiros para dentro de um *container*;
+- [x] Copiar ficheiros para dentro de um *container*;
 - [x] Estabelecer uma ligação com o *container*;
-- [ ] Executar aplicações num *container*.
+- [x] Executar aplicações num *container*.
 
 Extras:
 
@@ -95,6 +95,7 @@ Lista todos os *containers* em execução, mostrando o *PID* e o nome de cada *c
 #### Execução de comandos num *container*
 
 Para executar comandos num *container*, é chamada a seguinte função:
+
 ```cpp
 int run_command_in_container(const char *container_name, char *command);
 ```

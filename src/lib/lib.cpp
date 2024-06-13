@@ -161,7 +161,15 @@ int list_containers(void)
         printf("Name: %s\n", containers_names[index]);
         printf("State: %s\n", containers[index]->state(containers[index]));
         printf("PID: %d\n", containers[index]->init_pid(containers[index]));
-        printf("IP: %s\n", *containers[index]->get_ips(containers[index], "eth0", "inet", 0));
+        char *ip = *containers[index]->get_ips(containers[index], "eth0", "inet", 0);
+        if (ip != NULL)
+        {
+            printf("IP: %s\n", ip);
+        }
+        else
+        {
+            printf("IP: Not available\n");
+        }
     }
     printf("\n");
 
@@ -265,15 +273,33 @@ out:
     return result;
 }
 
-int run_application_in_container(const char *container_name, const char *application) // TODO: Implement this function
+int copy_file_to_container(const char *container_name, const char *file_name)
 {
-    printf("Executing application \"%s\" in container %s\n", application, container_name);
-    return 0;
-}
+    char log_message[LOG_MESSAGE_SIZE] = {0};
+    char destination_path[1024] = {0}, copy_command[FILENAME_MAX] = {0};
 
-int copy_file_to_container(const char *container_name, const char *file_name) // TODO: Implement this function
-{
-    printf("Copying file \"%s\" to container %s\n", file_name, container_name);
+    struct lxc_container *container = lxc_container_new(container_name, NULL);
+    if (container == NULL) // container does not exist
+    {
+        fprintf(stderr, "Failed to setup lxc_container struct\n");
+        return -1;
+    }
+
+    snprintf(destination_path, sizeof(destination_path), "~/.local/share/lxc/%s/rootfs/home/ubuntu/", container_name);
+    snprintf(copy_command, sizeof(copy_command), "sudo cp %s %s", file_name, destination_path);
+
+    if (system(copy_command) < 0)
+    {
+        fprintf(stderr, "Failed to copy file\n");
+        return -1;
+    }
+
+    printf("File %s copied to container %s\n", file_name, container_name);
+
+    // Add log message
+    snprintf(log_message, LOG_MESSAGE_SIZE, "INFO LOG: File %s copied to container %s", file_name, container_name);
+    add_log_message(log_message, LOG_FILE_NAME);
+
     return 0;
 }
 

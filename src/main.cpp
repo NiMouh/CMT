@@ -35,9 +35,11 @@ void clear_screen(void)
     printf("\033[H\033[J");
 }
 
-void clear_input_buffer(void) {
+void clear_input_buffer(void)
+{
     int c;
-    while ((c = getchar()) != '\n' && c != EOF);
+    while ((c = getchar()) != '\n' && c != EOF)
+        ;
 }
 
 int show_options_menu(void)
@@ -57,9 +59,8 @@ int show_options_menu(void)
     printf("4. Execute a command in a Container\n");
     printf("5. Define limits of system resources\n");
     printf("6. Check limits of system resources\n");
-    printf("7. Establish a network connection with a Container\n");
-    printf("8. Execute an application in a Container\n");
-    printf("9. Copy a file to a Container\n");
+    printf("7. Establish connection with a Container\n");
+    printf("8. Copy a file to a Container\n");
     printf("10. Exit\n\n");
     printf("Choose an option: ");
 
@@ -229,7 +230,7 @@ int main(void)
             break;
         }
 
-        case 5: // FIXME: Define limits of system resources (cgroups)
+        case 5: // Define limits of system resources (cgroups)
         {
             clear_screen();
 
@@ -358,46 +359,7 @@ int main(void)
             break;
         }
 
-        case 8: // TODO: Execute an application in a Container
-        {
-            clear_screen();
-
-            printf("Executing an application in a Container...\n");
-
-            printf("Enter the name of the Container: ");
-            if (read_input(container_name, CONTAINER_NAME_SIZE) < 0)
-                break;
-
-            char application[APPLICATION_NAME_BUFFER_SIZE] = {0};
-
-            printf("Enter the application to execute: ");
-            if (fgets(application, APPLICATION_NAME_BUFFER_SIZE, stdin) == NULL)
-            {
-                printf("Error: Failed to read the application.\n");
-                break;
-            }
-
-            application[strcspn(application, "\n")] = 0; // Remove the newline character
-
-            if (run_application_in_container(container_name, application) == 0) // execute the application
-            {
-                printf("Application \"%s\" executed successfully in Container %s.\n", application, container_name);
-            }
-            else
-            {
-                printf("Error: Failed to execute application \"%s\" in Container %s.\n", application, container_name);
-            }
-
-            printf("Press ENTER to continue...");
-            while (getchar() != '\n') // Clear the input buffer
-                ;
-
-            memset(container_name, 0, CONTAINER_NAME_SIZE); // clear name buffer
-
-            break;
-        }
-
-        case 9: // TODO: Copy a file to a Container
+        case 8: // Copy a file to a Container
         {
             clear_screen();
 
