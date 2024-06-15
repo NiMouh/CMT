@@ -28,3 +28,21 @@ Thu Jun 13 16:14:58 2024 - INFO LOG: Command "ls" executed in container teste_ae
 Thu Jun 13 16:18:36 2024 - INFO LOG: Connection started for container teste_aes
 Thu Jun 13 21:49:22 2024 - INFO LOG: Command "ls" executed in container teste_aes
 Thu Jun 13 21:49:41 2024 - INFO LOG: Listed 1 active containers
+Sat Jun 15 21:24:33 2024 - INFO LOG: Container video_aes created
+Sat Jun 15 21:24:33 2024 - INFO LOG: Container video_aes started
+Sat Jun 15 21:25:04 2024 - INFO LOG: Command "ls" executed in container video_aes
+Sat Jun 15 21:25:15 2024 - INFO LOG: Listed 1 active containers
+Sat Jun 15 21:26:49 2024 - INFO LOG: The resource memory.limit_in_bytes of the container video_aes was defined with value '850
+Sat Jun 15 21:27:19 2024 - INFO LOG: Command "free" executed in container video_aes
+Sat Jun 15 21:28:11 2024 - INFO LOG: File teste.c copied to container video_aes
+Sat Jun 15 21:28:39 2024 - INFO LOG: Connection started for container video_aes
+Sat Jun 15 21:29:02 2024 - INFO LOG: Command "passwd" executed in container video_aes
+Sat Jun 15 21:30:55 2024 - INFO LOG: Connection started for container video_aes
+Sat Jun 15 21:31:38 2024 - WARNING LOG: Container video_aes stopped
+Sat Jun 15 21:31:38 2024 - WARNING LOG: Container video_aes destroyed
+Sat Jun 15 21:45:27 2024 - INFO LOG: Container video2_aes created
+Sat Jun 15 21:45:27 2024 - INFO LOG: Container video2_aes started
+Sat Jun 15 21:50:47 2024 - ERROR LOG: Failed to start container video_aes
+Sat Jun 15 21:50:56 2024 - ERROR LOG: Failed to start container video_aes
+Sat Jun 15 21:51:08 2024 - INFO LOG: Listed 1 active containers
+Sat Jun 15 21:51:23 2024 - INFO LOG: Command "ps" executed in container video2_aes
