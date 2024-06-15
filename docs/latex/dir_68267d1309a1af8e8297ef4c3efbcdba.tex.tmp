@@ -11,4 +11,6 @@ directory \mbox{\hyperlink{dir_c85d3e3c5052e9ad9ce18c6863244a25}{lib}}
 \begin{DoxyCompactItemize}
 \item 
 file \mbox{\hyperlink{main_8cpp}{main.\+cpp}}
-\begin{DoxyCompactList}\small\item\em Main program that provides a menu to interact with the Container Manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Main program that provides a menu to interact with the Container Manager. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{teste_8c}{teste.\+c}}
+\end{DoxyCompactItemize}

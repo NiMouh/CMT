@@ -15,9 +15,9 @@ Include dependency graph for main.\+cpp\+:
 \begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{main_8cpp_a948b01d5dce6fec4bc6a40e1adfbc50f}{EXIT\+\_\+\+OPTION}}~10
-\item 
+\begin{DoxyCompactList}\small\item\em Constants for the options menu. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{main_8cpp_ad659752bd5bb49232f15259bb86a1b66}{CONTAINER\+\_\+\+NAME\+\_\+\+SIZE}}~100
-\item 
+\begin{DoxyCompactList}\small\item\em Buffer sizes for input and output. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{main_8cpp_acf5b4949b2bcaa055cc03fa33274f6d9}{COMMAND\+\_\+\+BUFFER\+\_\+\+SIZE}}~1024
 \item 
 \#define \mbox{\hyperlink{main_8cpp_a03014ca392fa104201cc103160a8148e}{CGROUP\+\_\+\+LIMITS\+\_\+\+BUFFER\+\_\+\+SIZE}}~10
@@ -28,13 +28,13 @@ Include dependency graph for main.\+cpp\+:
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{main_8cpp_abc40cd622f423abf44084c8f8595f57f}{clear\+\_\+screen}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em Clear the terminal screen. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{main_8cpp_a406defd61bbe2707306f1d68b6f3bb08}{clear\+\_\+input\+\_\+buffer}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em Clear the input buffer. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{main_8cpp_a34ce9ce16a28b7cd6f6751994bbd2450}{show\+\_\+options\+\_\+menu}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em Show the options menu. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{main_8cpp_a5e2e8eeaaaf44a61521c5c9f57416284}{read\+\_\+input}} (char $\ast$buffer, int buffer\+\_\+size)
-\item 
+\begin{DoxyCompactList}\small\item\em Read input from the user. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{main_8cpp_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
 \end{DoxyCompactItemize}
 
@@ -73,11 +73,19 @@ Simão Andrade
 \doxysubsubsection{\texorpdfstring{CONTAINER\_NAME\_SIZE}{CONTAINER\_NAME\_SIZE}}
 {\footnotesize\ttfamily \#define CONTAINER\+\_\+\+NAME\+\_\+\+SIZE~100}
 
+
+
+Buffer sizes for input and output. 
+
 \mbox{\Hypertarget{main_8cpp_a948b01d5dce6fec4bc6a40e1adfbc50f}\label{main_8cpp_a948b01d5dce6fec4bc6a40e1adfbc50f}} 
 \index{main.cpp@{main.cpp}!EXIT\_OPTION@{EXIT\_OPTION}}
 \index{EXIT\_OPTION@{EXIT\_OPTION}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{EXIT\_OPTION}{EXIT\_OPTION}}
 {\footnotesize\ttfamily \#define EXIT\+\_\+\+OPTION~10}
+
+
+
+Constants for the options menu. 
 
 \mbox{\Hypertarget{main_8cpp_a8582aa6637e4bfd8770ca7385a2babb5}\label{main_8cpp_a8582aa6637e4bfd8770ca7385a2babb5}} 
 \index{main.cpp@{main.cpp}!FILENAME\_BUFFER\_SIZE@{FILENAME\_BUFFER\_SIZE}}
@@ -94,11 +102,19 @@ Simão Andrade
 \doxysubsubsection{\texorpdfstring{clear\_input\_buffer()}{clear\_input\_buffer()}}
 {\footnotesize\ttfamily void clear\+\_\+input\+\_\+buffer (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
+
+
+Clear the input buffer. 
+
 \mbox{\Hypertarget{main_8cpp_abc40cd622f423abf44084c8f8595f57f}\label{main_8cpp_abc40cd622f423abf44084c8f8595f57f}} 
 \index{main.cpp@{main.cpp}!clear\_screen@{clear\_screen}}
 \index{clear\_screen@{clear\_screen}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{clear\_screen()}{clear\_screen()}}
 {\footnotesize\ttfamily void clear\+\_\+screen (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Clear the terminal screen. 
 
 \mbox{\Hypertarget{main_8cpp_a840291bc02cba5474a4cb46a9b9566fe}\label{main_8cpp_a840291bc02cba5474a4cb46a9b9566fe}} 
 \index{main.cpp@{main.cpp}!main@{main}}
@@ -112,9 +128,30 @@ Simão Andrade
 \doxysubsubsection{\texorpdfstring{read\_input()}{read\_input()}}
 {\footnotesize\ttfamily int read\+\_\+input (\begin{DoxyParamCaption}\item[{char $\ast$}]{buffer,  }\item[{int}]{buffer\+\_\+size }\end{DoxyParamCaption})}
 
+
+
+Read input from the user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & the input buffer \\
+\hline
+{\em buffer\+\_\+size} & the size of the buffer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 on success, -\/1 on failure 
+\end{DoxyReturn}
 \mbox{\Hypertarget{main_8cpp_a34ce9ce16a28b7cd6f6751994bbd2450}\label{main_8cpp_a34ce9ce16a28b7cd6f6751994bbd2450}} 
 \index{main.cpp@{main.cpp}!show\_options\_menu@{show\_options\_menu}}
 \index{show\_options\_menu@{show\_options\_menu}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{show\_options\_menu()}{show\_options\_menu()}}
 {\footnotesize\ttfamily int show\+\_\+options\+\_\+menu (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
+
+
+Show the options menu. 
+
+\begin{DoxyReturn}{Returns}
+int the chosen option 
+\end{DoxyReturn}

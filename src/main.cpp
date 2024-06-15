@@ -15,23 +15,30 @@
 #include <string.h>
 #include <stdlib.h>
 
+/**
+ * @brief Constants for the options menu
+ */
 #define EXIT_OPTION 10
+
+/**
+ * @brief Buffer sizes for input and output
+ */
 #define CONTAINER_NAME_SIZE 100
-
-// 4.
 #define COMMAND_BUFFER_SIZE 1024
-
-// 5.
 #define CGROUP_LIMITS_BUFFER_SIZE 10
-
-// 8.
 #define FILENAME_BUFFER_SIZE 100
 
+/**
+ * @brief Clear the terminal screen
+ */
 void clear_screen(void)
 {
     printf("\033[H\033[J");
 }
 
+/**
+ * @brief Clear the input buffer
+ */
 void clear_input_buffer(void)
 {
     int c;
@@ -39,6 +46,11 @@ void clear_input_buffer(void)
         ;
 }
 
+/**
+ * @brief Show the options menu
+ *
+ * @return int the chosen option
+ */
 int show_options_menu(void)
 {
     int option = 0;
@@ -72,6 +84,14 @@ int show_options_menu(void)
     return option;
 }
 
+/**
+ * @brief Read input from the user
+ *
+ * @param buffer the input buffer
+ * @param buffer_size the size of the buffer
+ *
+ * @return int 0 on success, -1 on failure
+ */
 int read_input(char *buffer, int buffer_size)
 {
     if (fgets(buffer, buffer_size, stdin) == NULL)

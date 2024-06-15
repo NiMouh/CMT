@@ -1,14 +1,38 @@
+/**
+ * @file lib.cpp
+ * @brief Library functions that interact with LXC library
+ * 
+ * This file contains the implementation of the functions that interact with the LXC library.
+ * The functions are responsible for creating, removing, listing, starting a connection, running a command, copying a file, defining limits of system resources and checking limits of system resources of a container.
+ * 
+ * @author Simão Andrade
+ * @date 2024-06-13
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <lxc/lxccontainer.h>
 #include <unistd.h>
 #include <time.h>
 
+/**
+ * @brief Maximum number of arguments for a command
+ */
 #define MAX_COMMAND_ARGS 100
 
+/**
+ * @brief Maximum size of a log message
+ */
 #define LOG_MESSAGE_SIZE 100
+
+/**
+ * @brief Name of the log file
+ */
 #define LOG_FILE_NAME "log.txt"
 
+/**
+ * @brief Size of the buffer to store the value of a cgroup
+ */
 #define CGROUP_VALUE_BUFFER_SIZE 50
 
 int add_log_message(const char *message, const char *file_name)
